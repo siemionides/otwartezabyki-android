@@ -1,0 +1,26 @@
+
+Iteracja 1 - 13.06.2013 -------- (07.07.2013) DONE
+Cele:
+	-> Stworzenie ekranu głównego = ActionBar + Panel Bozczny + Lista zabytkow [na sztywno jakas]
+	-> Stworzenie pustych Acitivties odpalanych z przyciskow panelu bocznego
+	
+	
+	
+Iteracja 2 - 02.07.2013 DONE
+Cele
+	-> Wykorzystanie API i biblioteki android-async-http do zrobienia requesta zabytków z Białegostoku
+		+ latitude 53.1346562
+		+ longitude 23.1685799
+
+
+Iteracja 3 - not decided yet
+
+		
+		
+		
+
+		
+		
+		
+		
+		

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="6dip" >
+ 
+    <!-- 
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:text="CheckBox" />
+        
+     -->
+
+
+    <TextView
+        android:id="@+id/tv_relic_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="-1km" />
+
+    <LinearLayout
+            android:id="@+id/linear_layout_relic_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            >
+
+        <TextView
+            android:id="@+id/tv_relic_name_label"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Relic name: " />
+
+        <TextView
+            android:id="@+id/tv_relic_name"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="hehe" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_layout_relic_name">
+
+        <TextView
+            android:id="@+id/tv_relic_date_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_relic_name_label"
+            android:text="Relic dating: " />
+
+        <TextView
+            android:id="@+id/tv_relic_date"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_relic_date_label"
+            android:text="super" />
+    </LinearLayout>
+
+
+</RelativeLayout>

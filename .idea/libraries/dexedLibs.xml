@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="dexedLibs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/android-async-http-1.4.3-40b8035c52d9462ace021dfe73297214.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/android-support-v4-1f261ab23d35f2eeec7afd0eb063604b.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/android-async-http-1.4.3-cfc336567075f31ea7f685a9972b80a2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/android-support-v4-6975f40f05436f0d2aa71c91d6ccc92f.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
