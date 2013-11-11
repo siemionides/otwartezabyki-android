@@ -1,105 +1,91 @@
 package pl.siemionczyk.otwartezabytki;
 
 
-import android.app.ActionBar;
-import android.app.Fragment;
-import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import org.json.JSONObject;
-import pl.siemionczyk.otwartezabytki.domain.Relic;
-import pl.siemionczyk.otwartezabytki.fragment.AddRelicFragment;
-import pl.siemionczyk.otwartezabytki.fragment.SearchRelicFragment;
+import pl.siemionczyk.otwartezabytki.fragment.*;
 import pl.siemionczyk.otwartezabytki.helper.HelperToolkit;
+import pl.siemionczyk.otwartezabytki.helper.MyLog;
 
 
-public class MainActivity extends FragmentActivity implements ActionBar.OnNavigationListener{
+public class MainActivity extends FragmentActivity{
 	
 	private final static String TAG = "MainActivity";
 
-    //TODO that's how you should server main menu;
-    private final static int a = R.string.main_menu_about;
+    private DrawerLayout mDrawerLayout;
 
-    /** This is my short hack for serving the spinner menu*/
+    private ListView mDrawerList;
 
-
-//    public final static String[] main_menu_labels = new String[]{
-//            getResources().getS
-//    }
-
-
-//dsdsdsdsds
-//    private final  String a = getResources().getString(R.array.menu_elements[])
+    private ActionBarDrawerToggle mDrawerToggle;
 
     private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
-    int b = 4;
 
-    int c = 3;
+    String[] dropdownValues;
 
-
-    /** ListView for showing up the results */
-	private ListView mListView;
+    CharSequence mTitle;
 
 
-//    fdfdfd
-
-
-
-    /** contains main meu */
-    ArrayAdapter<String> spinnerAdapter = null;
-	
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main_list_relics_around);
-		
-		 //latitude 53.1346562
-			//+ longitude 23.1685799
+		setContentView(R.layout.navigation_drawer );
 
-
-
-        // Set up the action bar to show a dropdown list.
-        final ActionBar actionBar = getActionBar();
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         // This is nasty hack, will have to figure it out better
-        final String[] dropdownValues = new String[]{
-                getResources().getString( R.string.main_menu_wyszukaj ),
+       dropdownValues = new String[]{
+               getResources().getString( R.string.main_menu_w_okolicy ),
+               getResources().getString( R.string.main_menu_wyszukaj ),
                 getResources().getString( R.string.main_menu_dodaj ),
-                getResources().getString( R.string.main_menu_ulubione ),
-                getResources().getString( R.string.main_menu_mapa ),
-                getResources().getString( R.string.main_menu_ustawienia ),
+                getResources().getString( R.string.main_menu_favourites ),
+                getResources().getString( R.string.main_menu_map ),
+                getResources().getString( R.string.main_menu_settings ),
                 getResources().getString( R.string.main_menu_about )
         };
 
-
-        // Specify a SpinnerAdapter to populate the dropdown list.
-       this.spinnerAdapter = new ArrayAdapter<String>(actionBar.getThemedContext(),
-                android.R.layout.simple_spinner_item, android.R.id.text1,
-                dropdownValues);
-
-       this.spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Set the adapter for the list view
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+                R.layout.drawer_list_item, dropdownValues));
+        // Set the list's click listener
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
 
-        // Set up the dropdown list navigation in the action bar.
-        actionBar.setListNavigationCallbacks(spinnerAdapter, this);
+        //validate actin bar
+        mDrawerToggle = new ActionBarDrawerToggle( this, mDrawerLayout,
+                R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close ) {
 
-        // Use getActionBar().getThemedContext() to ensure
-        // that the text color is always appropriate for the action bar
-        // background rather than the activity background.
+            /**
+             * Called when a drawer has settled in a completely closed state.
+             */
+            public void onDrawerClosed ( View view ) {
+                getActionBar().setTitle( mTitle );
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
 
+            /**
+             * Called when a drawer has settled in a completely open state.
+             */
+            public void onDrawerOpened ( View drawerView ) {
+                getActionBar().setTitle( mTitle );
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+        };
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
 
 	}
 
@@ -111,51 +97,38 @@ public class MainActivity extends FragmentActivity implements ActionBar.OnNaviga
         return true;
     }
 
-
-
-    /** Serves navigation menu */
+    /* Called whenever we call invalidateOptionsMenu() */
     @Override
-    public boolean onNavigationItemSelected(int position, long id) {
-        // When the given dropdown item is selected, show its contents in the
-        // container view.
-
-        String s = spinnerAdapter.getItem(position);
-        if (s.equals(getResources().getString(R.string.main_menu_wyszukaj))){
-            Fragment fragment = new SearchRelicFragment();
-            Bundle args = new Bundle();
-//            args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-            fragment.setArguments(args);
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.container, fragment).commit();
-            //show main menu wyszukaj;
-        } else if (s.equals(getResources().getString(R.string.main_menu_dodaj))){
-            Fragment fragment = new AddRelicFragment();
-            Bundle args = new Bundle();
-//            args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-            fragment.setArguments(args);
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.container, fragment).commit();
-        } else if (s.equals(getResources().getString(R.string.main_menu_mapa))){
-            ;
-            //show main menu wyszukaj;
-        } else if (s.equals(getResources().getString(R.string.main_menu_ustawienia))){
-            ;
-            //show main menu wyszukaj;
-        } else if (s.equals(getResources().getString(R.string.main_menu_ulubione))){
-            ;
-            //show main menu wyszukaj;
-        } else if (s.equals(getResources().getString(R.string.main_menu_about))){
-            ;
-            //show main menu wyszukaj;
-        }
-
-
-
-        HelperToolkit.makeToast(this, "selected element pos:" + position);
-        Log.d(TAG, "item selected! pos:" + position + ", id:" + id);
-
-        return true;
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // If the nav drawer is open, hide action items related to the content view
+        return super.onPrepareOptionsMenu(menu);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Pass the event to ActionBarDrawerToggle, if it returns
+        // true, then it has handled the app icon touch event
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        // Handle your other action bar items...
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -172,19 +145,44 @@ public class MainActivity extends FragmentActivity implements ActionBar.OnNaviga
                 .getSelectedNavigationIndex());
     }
 
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView parent, View view, int position, long id) {
+            selectItem(position, (TextView) view);
+        }
+    }
+
+    /** Swaps fragments in the main content view */
+    private void selectItem(int position, TextView view) {
+
+        MyLog.i( TAG, "position: " + position  + " text:" + view.getText());
+
+        Fragment f = null;
+        String textButton = view.getText().toString();
+
+        if ( textButton.equals( getString( R.string.main_menu_w_okolicy ) )) f = new RelicsAroundFragment();
+        else if (textButton.equals( getString( R.string.main_menu_wyszukaj ) )) f = new SearchRelicFragment();
+        else if (textButton.equals( getString( R.string.main_menu_wyszukaj ) )) f = new SearchRelicFragment();
+        else if (textButton.equals( getString( R.string.main_menu_dodaj ) )) HelperToolkit.makeToast( this, "Adding relics not implemented yet");
+
+        else if (textButton.equals( getString( R.string.main_menu_favourites ) )) f = new FavouriteRelicsFragment();
+        else if (textButton.equals( getString( R.string.main_menu_map ) )) f = new MapFragment();
+        else if (textButton.equals( getString( R.string.main_menu_settings ) )) HelperToolkit.makeToast( this, " Settings not implemented yet");
+        else if (textButton.equals( getString( R.string.main_menu_about ) )) f = new AboutFragment();
+
+        if ( f != null){
+            // Insert the fragment by replacing any existing fragment
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, f)
+                    .commit();
+        }
 
 
-
-
-	
-
-	
-	   
-
-
-
-	
-
-
+        // Highlight the selected item, update the title, and close the drawer
+        mDrawerList.setItemChecked(position, true);
+        setTitle( textButton );
+        mDrawerLayout.closeDrawer(mDrawerList);
+    }
 
 }

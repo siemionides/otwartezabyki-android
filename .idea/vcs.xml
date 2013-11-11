@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="VcsDirectoryMappings">
-<<<<<<< HEAD
     <mapping directory="" vcs="" />
-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/otwartezabytki-android" vcs="Git" />
-=======
-    <mapping directory="" vcs="Git" />
->>>>>>> 8da92828991d655a568f6d5c3943e900e24a8287
   </component>
 </project>
 

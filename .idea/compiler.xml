@@ -2,12 +2,6 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
-<<<<<<< HEAD
-=======
-    <excludeFromCompile>
-      <directory url="file://$PROJECT_DIR$/gen" includeSubdirectories="true" />
-    </excludeFromCompile>
->>>>>>> 8da92828991d655a568f6d5c3943e900e24a8287
     <resourceExtensions />
     <wildcardResourcePatterns>
       <entry name="!?*.java" />
@@ -24,12 +18,6 @@
         <processorPath useClasspath="true" />
       </profile>
     </annotationProcessing>
-<<<<<<< HEAD
-=======
-    <bytecodeTargetLevel target="1.7">
-      <module name="otwartezabytki-android" target="1.7" />
-    </bytecodeTargetLevel>
->>>>>>> 8da92828991d655a568f6d5c3943e900e24a8287
   </component>
 </project>
 

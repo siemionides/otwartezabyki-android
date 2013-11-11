@@ -5,11 +5,11 @@
     <!-- Menu (Spinner)-->
 
     <string name="main_menu_w_okolicy">Zabytki w okolicy </string>
-    <string name="main_menu_wyszukaj"> </string>
-    <string name="main_menu_dodaj">Dodaj </string>
-    <string name="main_menu_ulubione">Ulubione </string>
-    <string name="main_menu_mapa">Mapa </string>
-    <string name="main_menu_ustawienia">Ustawienia </string>
+    <string name="main_menu_wyszukaj">Wyszukiwanie szczegółowe</string>
+    <string name="main_menu_dodaj">[ Dodaj zabytek ]</string>
+    <string name="main_menu_favourites">Ulubione</string>
+    <string name="main_menu_map">Mapa </string>
+    <string name="main_menu_settings">Ustawienia </string>
     <string name="main_menu_about">About </string>
 
 

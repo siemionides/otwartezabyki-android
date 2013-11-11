@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+            android:layout_width="178dp"
+            android:layout_height="64dp"
+            android:text="Wyszukiwanie szczegółowe"
+            android:id="@+id/search_relic_tv"
+            android:layout_gravity="left|center_vertical"/>
+
+    <!-- Default View of Main Activity TODO: put it into fragment-->
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+
+        <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="26dp"
+                android:text="Button" />
+
+        <ListView
+                android:id="@+id/listRelicsAround"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+</LinearLayout>

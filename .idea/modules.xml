@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
-      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/otwartezabytki-android/otwartezabytki-android.iml" filepath="$PROJECT_DIR$/otwartezabytki-android/otwartezabytki-android.iml" />
-=======
-      <module fileurl="file://$PROJECT_DIR$/otwartezabytki-android.iml" filepath="$PROJECT_DIR$/otwartezabytki-android.iml" />
->>>>>>> 8da92828991d655a568f6d5c3943e900e24a8287
     </modules>
   </component>
 </project>
