@@ -110,13 +110,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestService.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="TestService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/service/TestService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="0" selection-start="1372" selection-end="1372" vertical-scroll-proportion="0.31588784" vertical-offset="851" max-vertical-offset="1605">
+            <state line="68" column="0" selection-start="1372" selection-end="1372" vertical-scroll-proportion="0.0" vertical-offset="851" max-vertical-offset="1605">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Relic35.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/domain/Relic35.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="44" selection-start="91" selection-end="91" vertical-scroll-proportion="0.056074765" vertical-offset="0" max-vertical-offset="885">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -161,15 +170,6 @@
         <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/event/events/TestEvent.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="5" column="24" selection-start="130" selection-end="130" vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="195">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OttoEventBus.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/event/OttoEventBus.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="20" selection-start="275" selection-end="275" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="870">
               <folding />
             </state>
           </provider>
@@ -233,6 +233,7 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/otwartezabytki-android/.gitignore" />
         <option value="$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/service/TestService.java" />
+        <option value="$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/domain/Relic35.java" />
       </list>
     </option>
   </component>
@@ -439,6 +440,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="otwartezabytki-android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="otwartezabytki-android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="otwartezabytki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="otwartezabytki-android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="otwartezabytki-android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="otwartezabytki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="domain" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -469,6 +510,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="pl.siemionczyk.otwartezabytki.domain" />
       <recent name="pl.siemionczyk.otwartezabytki.event.events" />
       <recent name="pl.siemionczyk.otwartezabytki" />
       <recent name="pl.siemionczyk.otwartezabytki.fragment" />
@@ -780,16 +822,16 @@
       <workItem from="1384429272666" duration="522000" />
       <workItem from="1384430516840" duration="2433000" />
       <workItem from="1384433045459" duration="6376000" />
-      <workItem from="1384506011231" duration="237000" />
+      <workItem from="1384506011231" duration="881000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30544000" />
+    <option name="totallyTimeSpent" value="31188000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-92" y="-975" width="1440" height="874" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -812,7 +854,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.348637" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4497848" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24871795" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2230523" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -844,11 +886,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/otwartezabytki-android/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="18" selection-start="768" selection-end="768" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="465" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/fragment/AboutFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="62" selection-start="553" selection-end="553" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="480" />
@@ -1004,7 +1041,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/fragment/SearchRelicFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="36" selection-start="1629" selection-end="1629" vertical-scroll-proportion="0.0" vertical-offset="780" max-vertical-offset="3195" />
+        <state line="52" column="36" selection-start="1629" selection-end="1629" vertical-scroll-proportion="0.0" vertical-offset="780" max-vertical-offset="3195">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/helper/HelperToolkit.java">
@@ -1060,7 +1099,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="0" selection-start="564" selection-end="723" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1069,7 +1108,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="24" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="720">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1170,10 +1209,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/service/TestService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="0" selection-start="1372" selection-end="1372" vertical-scroll-proportion="0.31588784" vertical-offset="851" max-vertical-offset="1605">
+        <state line="68" column="0" selection-start="1372" selection-end="1372" vertical-scroll-proportion="0.0" vertical-offset="851" max-vertical-offset="1605">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/domain/Relic35.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="44" selection-start="91" selection-end="91" vertical-scroll-proportion="0.056074765" vertical-offset="0" max-vertical-offset="885">
+          <folding />
         </state>
       </provider>
     </entry>
