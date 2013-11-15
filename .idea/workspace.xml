@@ -124,7 +124,7 @@
       <file leaf-file-name="Relic35.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/domain/Relic35.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="44" selection-start="91" selection-end="91" vertical-scroll-proportion="0.056074765" vertical-offset="0" max-vertical-offset="885">
+            <state line="7" column="23" selection-start="160" selection-end="160" vertical-scroll-proportion="0.19626169" vertical-offset="0" max-vertical-offset="915">
               <folding />
             </state>
           </provider>
@@ -822,16 +822,16 @@
       <workItem from="1384429272666" duration="522000" />
       <workItem from="1384430516840" duration="2433000" />
       <workItem from="1384433045459" duration="6376000" />
-      <workItem from="1384506011231" duration="881000" />
+      <workItem from="1384506011231" duration="984000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31188000" />
+    <option name="totallyTimeSpent" value="31291000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-92" y="-975" width="1440" height="874" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1218,7 +1218,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/domain/Relic35.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="44" selection-start="91" selection-end="91" vertical-scroll-proportion="0.056074765" vertical-offset="0" max-vertical-offset="885">
+        <state line="7" column="23" selection-start="160" selection-end="160" vertical-scroll-proportion="0.19626169" vertical-offset="0" max-vertical-offset="915">
           <folding />
         </state>
       </provider>

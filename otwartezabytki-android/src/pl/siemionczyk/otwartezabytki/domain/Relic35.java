@@ -5,6 +5,8 @@ public class Relic35 {
 
 	private int id;
 
+    private float sdfs;
+
 	private String name;
 
 	/** From the user naturally, in kilometers */
