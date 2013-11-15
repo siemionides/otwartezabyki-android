@@ -5,7 +5,7 @@ public class Relic35 {
 
 	private int id;
 
-    private float sdfs;
+    private float changingName;
 
 	private String name;
 
