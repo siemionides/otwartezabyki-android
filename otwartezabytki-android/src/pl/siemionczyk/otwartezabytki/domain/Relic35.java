@@ -9,6 +9,9 @@ public class Relic35 {
 
     private float conflictName = 343f;
 
+    private float conflictName2 = 343f;
+
+
 
     private String name;
 
