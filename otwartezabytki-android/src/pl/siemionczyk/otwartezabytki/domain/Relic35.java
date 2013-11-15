@@ -5,7 +5,7 @@ public class Relic35 {
 
 	private int id;
 
-    private float changingName;
+    private float changingName = 666; //this should generate conflict in feature_branch_local
 
 	private String name;
 
