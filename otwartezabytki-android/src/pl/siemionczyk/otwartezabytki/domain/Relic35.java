@@ -5,9 +5,15 @@ public class Relic35 {
 
 	private int id;
 
-    private float changingName = 666; //this should generate conflict in feature_branch_local
+    private float changingName = 10;   //this should generate conflict in feature_branch_local
 
-	private String name;
+    private float conflictName = 343f;
+
+    private float conflictName2 = 343f;
+
+
+
+    private String name;
 
 	/** From the user naturally, in kilometers */
 	private double distanceFrom;
