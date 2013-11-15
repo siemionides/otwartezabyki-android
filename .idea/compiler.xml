@@ -14,8 +14,10 @@
       <entry name="!?*.clj" />
     </wildcardResourcePatterns>
     <annotationProcessing>
-      <profile default="true" name="Default" enabled="false">
-        <processorPath useClasspath="true" />
+      <profile default="true" name="Default" enabled="true">
+        <processorPath useClasspath="true">
+          <entry name="$PROJECT_DIR$/otwartezabytki-android/libs/dagger-compiler-1.1.0.jar" />
+        </processorPath>
       </profile>
     </annotationProcessing>
   </component>

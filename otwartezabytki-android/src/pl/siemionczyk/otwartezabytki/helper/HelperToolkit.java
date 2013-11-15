@@ -32,4 +32,8 @@ public class HelperToolkit {
                 valueToShow,
                 Toast.LENGTH_LONG).show();
     }
+
+    public static int returnFive (){
+        return 5;
+    }
 }

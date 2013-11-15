@@ -1,6 +1,7 @@
 package pl.siemionczyk.otwartezabytki;
 
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,9 +17,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.squareup.otto.Subscribe;
+import pl.siemionczyk.otwartezabytki.event.EventBus;
+import pl.siemionczyk.otwartezabytki.event.events.FromServiceEvent;
+import pl.siemionczyk.otwartezabytki.event.events.TestEvent;
+import pl.siemionczyk.otwartezabytki.event.events.ToServiceEvent;
 import pl.siemionczyk.otwartezabytki.fragment.*;
 import pl.siemionczyk.otwartezabytki.helper.HelperToolkit;
 import pl.siemionczyk.otwartezabytki.helper.MyLog;
+import pl.siemionczyk.otwartezabytki.rest.OtwarteZabytkiClient;
+import pl.siemionczyk.otwartezabytki.rest.RelicJsonWrapper;
+import pl.siemionczyk.otwartezabytki.service.TestService;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
+import javax.inject.Inject;
 
 
 public class MainActivity extends FragmentActivity{
@@ -36,11 +51,22 @@ public class MainActivity extends FragmentActivity{
 
     CharSequence mTitle;
 
+        @Inject
+        OtwarteZabytkiClient client;
+
+        @Inject
+        EventBus bus;
+
+//    OttoEventBus bus
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.navigation_drawer );
+
+        ((OtwarteZabytkiApp) getApplication()).inject(this);
+
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
@@ -89,6 +115,19 @@ public class MainActivity extends FragmentActivity{
 
 	}
 
+    @Override
+    protected void onResume () {
+        super.onResume();
+
+        bus.register( this );
+    }
+
+    @Override
+    protected void onPause () {
+        super.onPause();
+
+        bus.unregister( this );
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -152,6 +191,17 @@ public class MainActivity extends FragmentActivity{
         }
     }
 
+    @Subscribe
+    public void onTestEventCome( TestEvent event){
+        MyLog.i( TAG,  "Test event come back!!!" );
+    }
+
+    @Subscribe
+    public void onFromServiceEvent (FromServiceEvent event){
+        MyLog.i( TAG,  "From service event: received " + event.value );
+
+    }
+
     /** Swaps fragments in the main content view */
     private void selectItem(int position, TextView view) {
 
@@ -161,13 +211,51 @@ public class MainActivity extends FragmentActivity{
         String textButton = view.getText().toString();
 
         if ( textButton.equals( getString( R.string.main_menu_w_okolicy ) )) f = new RelicsAroundFragment();
-        else if (textButton.equals( getString( R.string.main_menu_wyszukaj ) )) f = new SearchRelicFragment();
+        else if (textButton.equals( getString( R.string.main_menu_wyszukaj ) )){
+            f = new SearchRelicFragment();
+            bus.post( new TestEvent() );
+        }
         else if (textButton.equals( getString( R.string.main_menu_wyszukaj ) )) f = new SearchRelicFragment();
         else if (textButton.equals( getString( R.string.main_menu_dodaj ) )) HelperToolkit.makeToast( this, "Adding relics not implemented yet");
 
-        else if (textButton.equals( getString( R.string.main_menu_favourites ) )) f = new FavouriteRelicsFragment();
-        else if (textButton.equals( getString( R.string.main_menu_map ) )) f = new MapFragment();
-        else if (textButton.equals( getString( R.string.main_menu_settings ) )) HelperToolkit.makeToast( this, " Settings not implemented yet");
+        else if (textButton.equals( getString( R.string.main_menu_favourites ) )){
+            //test internet here
+            MyLog.i( TAG, "trying to test internet here..." );
+
+            f = new FavouriteRelicsFragment();
+            Callback<RelicJsonWrapper> cb = new Callback<RelicJsonWrapper>() {
+                @Override
+                public void success ( RelicJsonWrapper relicJsonWrapper, Response response ) {
+                    MyLog.i( TAG, "internet success, nrRelics:" + relicJsonWrapper.relics.size() );
+                }
+
+                @Override
+                public void failure ( RetrofitError retrofitError ) {
+                    MyLog.i( TAG, "internet failure:" + retrofitError.getMessage());
+
+                }
+            }            ;
+
+            client.getSideEffects( "Warszawa", "", "", "", cb);
+        }
+
+        else if (textButton.equals( getString( R.string.main_menu_map ) )){
+            f = new MapFragment();
+
+            //start service
+            Intent i = new Intent( this, TestService.class );
+            startService( i );
+        }
+
+        else if (textButton.equals( getString( R.string.main_menu_settings ) )){
+            HelperToolkit.makeToast( this, " Settings not implemented yet");
+
+            ToServiceEvent event = new ToServiceEvent();
+            event.value = 3;
+
+            bus.post( event );
+        }
+
         else if (textButton.equals( getString( R.string.main_menu_about ) )) f = new AboutFragment();
 
         if ( f != null){
