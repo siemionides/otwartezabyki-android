@@ -5,9 +5,12 @@ public class Relic35 {
 
 	private int id;
 
-    private float changingName;
+    private float changingName = 10;    //value on conflict
 
-	private String name;
+    private float conflictName = 343f;
+
+
+    private String name;
 
 	/** From the user naturally, in kilometers */
 	private double distanceFrom;
