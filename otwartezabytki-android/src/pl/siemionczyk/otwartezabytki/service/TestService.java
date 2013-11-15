@@ -26,14 +26,7 @@ public class TestService extends IntentService {
 
     private final static String TAG = "TestService";
 
-//    Runnable run = new Runnable() {
-//        @Override
-//        public void run () {
-//
-//
-//            stopSelf();
-//        }
-//    };
+
 
 
     @Override

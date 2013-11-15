@@ -4,7 +4,8 @@ package pl.siemionczyk.otwartezabytki.domain;
 public class Relic {
 	
 	private int id;
-	
+
+    /** Dummy commit to immitate changes on master*/
 	private String name;
 	
 	/** From the user naturally, in kilometers */
