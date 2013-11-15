@@ -114,26 +114,33 @@
         <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/service/TestService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="68" column="0" selection-start="1372" selection-end="1372" vertical-scroll-proportion="0.0" vertical-offset="851" max-vertical-offset="1605">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Relic35.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/domain/Relic35.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="23" selection-start="160" selection-end="160" vertical-scroll-proportion="0.19626169" vertical-offset="0" max-vertical-offset="915">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Relic35.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/domain/Relic35.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="22" selection-start="155" selection-end="159" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="915">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Relic.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/domain/Relic.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="13" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="885">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="1" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="120">
+            <state line="1" column="0" selection-start="5" selection-end="5" vertical-scroll-proportion="0.020519836" vertical-offset="0" max-vertical-offset="731">
               <folding />
             </state>
           </provider>
@@ -142,16 +149,7 @@
       <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/otwartezabytki-android/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="15" selection-end="15" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FromServiceEvent.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/event/events/FromServiceEvent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="13" selection-start="119" selection-end="119" vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="225">
+            <state line="3" column="0" selection-start="15" selection-end="34" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
               <folding />
             </state>
           </provider>
@@ -230,10 +228,10 @@
         <option value="$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/OtwarteZabytkiModule.java" />
         <option value="$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/MainActivity.java" />
         <option value="$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/OtwarteZabytkiApp.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/otwartezabytki-android/.gitignore" />
         <option value="$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/service/TestService.java" />
         <option value="$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/domain/Relic35.java" />
+        <option value="$PROJECT_DIR$/otwartezabytki-android/.gitignore" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -392,8 +390,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -482,6 +478,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -608,23 +606,17 @@
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
-    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="myFilePath" />
-      <option name="GLUE" />
-      <option name="myNameFilter" />
-      <option name="myGeneratedName" />
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
       <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -655,17 +647,23 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
+    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="myFilePath" />
+      <option name="GLUE" />
+      <option name="myNameFilter" />
+      <option name="myGeneratedName" />
       <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -823,11 +821,12 @@
       <workItem from="1384430516840" duration="2433000" />
       <workItem from="1384433045459" duration="6376000" />
       <workItem from="1384506011231" duration="984000" />
+      <workItem from="1384509777524" duration="718000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31291000" />
+    <option name="totallyTimeSpent" value="32009000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-92" y="-975" width="1440" height="874" extended-state="0" />
@@ -847,7 +846,6 @@
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25897437" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3846154" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="19" y="118" width="1394" height="671" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964131" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -855,13 +853,14 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4497848" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24871795" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24808185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2230523" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2230523" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11282051" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25897437" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -886,11 +885,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/fragment/AboutFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="62" selection-start="553" selection-end="553" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="480" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/otwartezabytki-android/res/layout/menu.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -1120,9 +1114,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/rest/RelicJsonWrapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="87" selection-end="87" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
-          <folding />
-        </state>
+        <state line="4" column="13" selection-start="87" selection-end="87" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/rest/OtwarteZabytkiClient.java">
@@ -1139,9 +1131,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/event/OttoEventBus.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="20" selection-start="275" selection-end="275" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
-          <folding />
-        </state>
+        <state line="14" column="20" selection-start="275" selection-end="275" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/OtwarteZabytkiModule.java">
@@ -1193,32 +1183,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/service/TestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="0" selection-start="1372" selection-end="1372" vertical-scroll-proportion="0.0" vertical-offset="851" max-vertical-offset="1605">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/domain/Relic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="13" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="885">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/domain/Relic35.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="22" selection-start="155" selection-end="159" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="915">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/otwartezabytki-android/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="15" selection-end="15" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
+        <state line="3" column="0" selection-start="15" selection-end="34" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="1" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="120">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/service/TestService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="0" selection-start="1372" selection-end="1372" vertical-scroll-proportion="0.0" vertical-offset="851" max-vertical-offset="1605">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/otwartezabytki-android/src/pl/siemionczyk/otwartezabytki/domain/Relic35.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="23" selection-start="160" selection-end="160" vertical-scroll-proportion="0.19626169" vertical-offset="0" max-vertical-offset="915">
+        <state line="1" column="0" selection-start="5" selection-end="5" vertical-scroll-proportion="0.020519836" vertical-offset="0" max-vertical-offset="731">
           <folding />
         </state>
       </provider>
