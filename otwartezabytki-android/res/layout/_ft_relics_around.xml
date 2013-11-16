@@ -11,4 +11,21 @@
             android:text="Zabytki w okolicy"
             android:id="@+id/textView"
             android:layout_gravity="left|center_vertical"/>
+
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+
+        <ListView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/list_view_relics"
+                />
+
+        <include
+                layout="@layout/progress_bar_relics_loading"
+                android:layout_centerInParent="true"
+                android:id="@+id/progress_bar_relics"
+                />
+
+
+    </RelativeLayout>
 </LinearLayout>
