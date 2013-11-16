@@ -17,6 +17,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import butterknife.InjectView;
+import butterknife.Views;
 import com.squareup.otto.Subscribe;
 import pl.siemionczyk.otwartezabytki.event.EventBus;
 import pl.siemionczyk.otwartezabytki.event.events.FromServiceEvent;
@@ -39,11 +41,13 @@ public class MainActivity extends FragmentActivity{
 	
 	private final static String TAG = "MainActivity";
 
-    private DrawerLayout mDrawerLayout;
+    @InjectView( R.id.drawer_layout )  DrawerLayout mDrawerLayout;
 
-    private ListView mDrawerList;
+    @InjectView( R.id.left_drawer )     ListView mDrawerList;
 
-    private ActionBarDrawerToggle mDrawerToggle;
+    ActionBarDrawerToggle mDrawerToggle;
+
+
 
     private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
 
@@ -51,13 +55,12 @@ public class MainActivity extends FragmentActivity{
 
     CharSequence mTitle;
 
-        @Inject
-        OtwarteZabytkiClient client;
+    @Inject
+    OtwarteZabytkiClient client;
 
-        @Inject
-        EventBus bus;
+    @Inject
+    EventBus bus;
 
-//    OttoEventBus bus
 
 
 	@Override
@@ -67,51 +70,13 @@ public class MainActivity extends FragmentActivity{
 
         ((OtwarteZabytkiApp) getApplication()).inject(this);
 
+        //inject Views
+        Views.inject( this);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        configureLeftMenu();
 
-        // This is nasty hack, will have to figure it out better
-       dropdownValues = new String[]{
-               getResources().getString( R.string.main_menu_w_okolicy ),
-               getResources().getString( R.string.main_menu_wyszukaj ),
-                getResources().getString( R.string.main_menu_dodaj ),
-                getResources().getString( R.string.main_menu_favourites ),
-                getResources().getString( R.string.main_menu_map ),
-                getResources().getString( R.string.main_menu_settings ),
-                getResources().getString( R.string.main_menu_about )
-        };
-
-        // Set the adapter for the list view
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, dropdownValues));
-        // Set the list's click listener
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
-
-        //validate actin bar
-        mDrawerToggle = new ActionBarDrawerToggle( this, mDrawerLayout,
-                R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close ) {
-
-            /**
-             * Called when a drawer has settled in a completely closed state.
-             */
-            public void onDrawerClosed ( View view ) {
-                getActionBar().setTitle( mTitle );
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-            }
-
-            /**
-             * Called when a drawer has settled in a completely open state.
-             */
-            public void onDrawerOpened ( View drawerView ) {
-                getActionBar().setTitle( mTitle );
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-            }
-        };
-
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
+        //by deafult open 0
+        selectItem( 0, getResources().getString( R.string.main_menu_w_okolicy ));
 
 	}
 
@@ -187,7 +152,7 @@ public class MainActivity extends FragmentActivity{
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView parent, View view, int position, long id) {
-            selectItem(position, (TextView) view);
+            selectItem(position, ((TextView) view).getText().toString() );
         }
     }
 
@@ -202,13 +167,56 @@ public class MainActivity extends FragmentActivity{
 
     }
 
-    /** Swaps fragments in the main content view */
-    private void selectItem(int position, TextView view) {
+    private void configureLeftMenu(){
+        // This is nasty hack, will have to figure it out better
+        dropdownValues = new String[]{
+                getResources().getString( R.string.main_menu_w_okolicy ),
+                getResources().getString( R.string.main_menu_wyszukaj ),
+                getResources().getString( R.string.main_menu_dodaj ),
+                getResources().getString( R.string.main_menu_favourites ),
+                getResources().getString( R.string.main_menu_map ),
+                getResources().getString( R.string.main_menu_settings ),
+                getResources().getString( R.string.main_menu_about )
+        };
 
-        MyLog.i( TAG, "position: " + position  + " text:" + view.getText());
+        // Set the adapter for the list view
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, dropdownValues));
+        // Set the list's click listener
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
+
+
+
+        //validate actin bar
+        mDrawerToggle = new ActionBarDrawerToggle( this, mDrawerLayout,
+                R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close ) {
+
+            /**
+             * Called when a drawer has settled in a completely closed state.
+             */
+            public void onDrawerClosed ( View view ) {
+                getActionBar().setTitle( mTitle );
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+
+            /**
+             * Called when a drawer has settled in a completely open state.
+             */
+            public void onDrawerOpened ( View drawerView ) {
+                getActionBar().setTitle( mTitle );
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+        };
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
+    }
+
+    /** Swaps fragments in the main content view */
+    private void selectItem(int position,  String textButton) {
 
         Fragment f = null;
-        String textButton = view.getText().toString();
 
         if ( textButton.equals( getString( R.string.main_menu_w_okolicy ) )) f = new RelicsAroundFragment();
         else if (textButton.equals( getString( R.string.main_menu_wyszukaj ) )){

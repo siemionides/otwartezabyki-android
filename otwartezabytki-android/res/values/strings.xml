@@ -22,4 +22,9 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_websearch">Web search</string>
 
+
+    <!-- dialogs / progress bars / etc-->
+    <string name="progres_bar_loading_relics">Ściąganie listy zabytków</string>
+
+
 </resources>
