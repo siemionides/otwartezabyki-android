@@ -2,9 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:layout_marginTop="@dimen/activity_vertical_margin"
-    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/relic_item_padding_top_bottom"
+    android:paddingBottom="@dimen/relic_item_padding_top_bottom"
         >
  
     <!-- 
@@ -24,13 +26,16 @@
                android:layout_height="wrap_content"
                android:id="@+id/relic_icon"
                android:src="@android:drawable/ic_media_ff"
+               android:layout_centerVertical="true"
+
 
             />
 
 
     <TextView
         android:id="@+id/tv_relic_name"
-        android:layout_width="280dp"
+        android:layout_width="240dp"
+        android:layout_centerVertical="true"
         android:gravity="center_vertical"
         android:layout_toRightOf="@id/relic_icon"
         android:layout_height="wrap_content"
@@ -38,9 +43,10 @@
 
     <LinearLayout
             android:id="@+id/linear_layout_relic_dating_distance"
-            android:layout_width="45dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
 
             >
@@ -48,16 +54,18 @@
         <TextView
             android:id="@+id/tv_relic_dating"
             android:textStyle="bold"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="right"
             android:layout_height="wrap_content"
-            android:text="XIX w " />
+            android:text="ok. 1915 / 1392 " />
 
         <TextView
             android:id="@+id/tv_relic_distance"
             android:textStyle="bold"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="0.3 km" />
+            android:gravity="right"
+            android:text="0.36 km" />
 
     </LinearLayout>
 

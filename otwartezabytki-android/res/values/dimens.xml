@@ -10,6 +10,11 @@
     <dimen name="menu_item_size">18sp</dimen>
 
 
+    <!-- Relics Around-->
+    <dimen name="relic_item_padding_top_bottom">8dp</dimen>
+
+
+
     <!-- Relic Details-->
     <dimen name="details_title_margin">10dp</dimen>
     <dimen name="details_content_margin">10dp</dimen>

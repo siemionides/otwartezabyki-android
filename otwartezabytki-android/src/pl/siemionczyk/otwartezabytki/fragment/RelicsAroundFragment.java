@@ -36,6 +36,8 @@ public class RelicsAroundFragment extends Fragment {
 
     public final static String TAG = "RelicsAroundFragment";
 
+    private final static float RADIUS_OF_SEARCH = 3f; //in kilometers
+
     ListView mListViewRelics;
 
     LinearLayout mProgressBar;
@@ -45,6 +47,8 @@ public class RelicsAroundFragment extends Fragment {
     TextView mNrRelicsFound;
 
     TextView mRadiusRelics;
+
+    private Location mLastFoundLocation;
 
     @Inject
     OtwarteZabytkiClient mClient;
@@ -69,12 +73,12 @@ public class RelicsAroundFragment extends Fragment {
 
 
         //get positionInfo
-        getLocationInfoAndUpdateRelics( view );
+        getLocationInfoAndUpdateRelics( view,RADIUS_OF_SEARCH);
 
         return view;
     }
 
-    private void getLocationInfoAndUpdateRelics ( View rootView) {
+    private void getLocationInfoAndUpdateRelics ( View rootView, final float radius) {
         LocationManager locationManager;
         String svcName = Context.LOCATION_SERVICE;
         locationManager = ( LocationManager) getActivity().getSystemService(svcName);
@@ -91,9 +95,11 @@ public class RelicsAroundFragment extends Fragment {
                 latLongString = "lat: " + location.getLatitude() + ", long: " + location.getLongitude();
 
                 //set this temporary view value
-                title.setText( latLongString ); 
+                title.setText( latLongString );
+
+
                 //donwload the relics
-                downloadListRelics( location.getLatitude(), location.getLongitude(), 2f);
+                downloadListRelics( location, radius);
             }
 
             @Override
@@ -119,7 +125,7 @@ public class RelicsAroundFragment extends Fragment {
 
     }
 
-    private void fillListView( ArrayList<RelicJson> relics){
+    private void fillListView( ArrayList<RelicJson> relics, Location userLocation){
 
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>(  );
 
@@ -131,7 +137,7 @@ public class RelicsAroundFragment extends Fragment {
             list.add( map );
         }
 
-        mAdapter = new RelicsAroundAdapter( getActivity(), R.layout.list_item_relic_around, relics );
+        mAdapter = new RelicsAroundAdapter( getActivity(), R.layout.list_item_relic_around, relics, userLocation );
 
         mListViewRelics.setAdapter( mAdapter );
     }
@@ -139,10 +145,10 @@ public class RelicsAroundFragment extends Fragment {
 
 
     /**
-     * @param latitude szerokość
-     * @param longitude długość geograf
+     * @param location location
+     *
      * @param radius in kilometers*/
-    private void downloadListRelics( double latitude, double longitude, float radius){
+    private void downloadListRelics( final Location location, final float radius){
 
         Callback<RelicJsonWrapper> cb = new Callback<RelicJsonWrapper>() {
             @Override
@@ -152,8 +158,14 @@ public class RelicsAroundFragment extends Fragment {
                 //hide progressBar
                 mProgressBar.setVisibility( View.GONE );
 
+                //update nr_relics field
+                mNrRelicsFound.setText( Integer.toString( relicJsonWrapper.relics.size() ) );
+
+                //update radius
+                mRadiusRelics.setText( Float.toString( radius) );
+
                 //fill listview
-                fillListView( relicJsonWrapper.relics );
+                fillListView( relicJsonWrapper.relics , location);
 
 
             }
@@ -163,6 +175,6 @@ public class RelicsAroundFragment extends Fragment {
                 MyLog.i( TAG, "failture on connection:" + retrofitError );
             }
         };
-        mClient.getSideEffectsAround( (float) latitude, (float) longitude, radius, true, cb );
+        mClient.getSideEffectsAround( (float) location.getLatitude(), (float) location.getLongitude(), radius, true, cb );
     }
 }

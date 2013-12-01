@@ -1,12 +1,14 @@
 package pl.siemionczyk.otwartezabytki.adapters;
 
 import android.content.Context;
+import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import pl.siemionczyk.otwartezabytki.R;
+import pl.siemionczyk.otwartezabytki.helper.MyLog;
 import pl.siemionczyk.otwartezabytki.rest.RelicJson;
 
 import java.util.List;
@@ -16,16 +18,20 @@ import java.util.List;
  */
 public class RelicsAroundAdapter extends ArrayAdapter<RelicJson> {
 
+    private static final String TAG = "RelicsAroundAdapter";
     private final Context mContext;
     private final List<RelicJson> mValues;
     private final int mResourceId;
+    private Location mUserLocation;
 
-    public RelicsAroundAdapter ( Context context, int resource, List<RelicJson> objects ) {
+    public RelicsAroundAdapter ( Context context, int resource, List<RelicJson> objects,
+                                 Location userLocation) {
         super( context, resource, objects );
 
         this.mContext = context;
         this.mValues = objects;
         this.mResourceId = resource;
+        this.mUserLocation = userLocation;
     }
 
     @Override
@@ -45,7 +51,15 @@ public class RelicsAroundAdapter extends ArrayAdapter<RelicJson> {
         //set values
         relicName.setText( ob.identification );
         relicDating.setText( ob.dating_of_obj );
-        relicDistance.setText( Float.toString( ob.latitude) );
+
+
+        //set dinstace
+        float[] result = new float[1];  // in meters
+        Location.distanceBetween( mUserLocation.getLatitude(), mUserLocation.getLongitude(), ob.latitude, ob.longitude, result );
+        String textDistance = String.format("%.2f", result[0] / 1000);
+        textDistance += " km";
+
+        relicDistance.setText( textDistance  );
 
         return rowView;
 
