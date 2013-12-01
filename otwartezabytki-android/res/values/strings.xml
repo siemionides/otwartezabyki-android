@@ -23,6 +23,15 @@
     <string name="action_websearch">Web search</string>
 
 
+
+    <!-- Relic seaerch details-->
+    <string-array name="search_distance_values">
+        <item>1 km</item>
+        <item>2 km</item>
+        <item>3 km</item>
+    </string-array>
+
+
     <!-- dialogs / progress bars / etc-->
     <string name="progres_bar_loading_relics">Wyszukiwanie listy zabytków w okolicy</string>
 

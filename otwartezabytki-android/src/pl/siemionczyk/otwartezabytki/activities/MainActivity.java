@@ -251,9 +251,6 @@ public class MainActivity extends FragmentActivity {
         else if (textButton.equals( getString( R.string.main_menu_map ) )){
             f = new MapFragment();
 
-            //start service
-//            Intent i = new Intent( this, TestService.class );
-//            startService( i );
         }
 
         else if (textButton.equals( getString( R.string.main_menu_settings ) )){

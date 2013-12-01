@@ -3,7 +3,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin"
+
+        >
+
+
+
+
+
+
+
+
+
 
     <TextView
             android:layout_width="178dp"
@@ -11,6 +24,199 @@
             android:text="Wyszukiwanie szczegółowe"
             android:id="@+id/search_relic_tv"
             android:layout_gravity="left|center_vertical"/>
+
+
+
+    <!-- Name of Relic -->
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:id="@+id/layout_location"
+                  android:clickable="true"
+            >
+
+        <View
+                android:background="@color/gray_horizontal_ruler_DN"
+                android:layout_height="1dp"
+                android:layout_width="fill_parent"/>
+
+        <TextView
+                android:id="@+id/tv_location_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nazwa zabytku"
+                android:layout_marginTop="@dimen/details_title_margin"
+                style="@style/font_section_header"
+
+                />
+
+
+        <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:hint="wpisz nazwę zabytku"
+                android:height="80dp"
+
+                />
+    </LinearLayout>
+
+
+
+    <!-- Name of Place -->
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:id="@+id/layout_location"
+                  android:clickable="true"
+                  android:layout_marginTop="@dimen/details_title_margin"
+
+            >
+
+        <View
+                android:background="@color/gray_horizontal_ruler_DN"
+                android:layout_height="1dp"
+                android:layout_width="fill_parent"/>
+
+        <TextView
+                android:id="@+id/tv_location_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Miejsce"
+                android:layout_marginTop="@dimen/details_title_margin"
+                style="@style/font_section_header"
+
+                />
+
+
+        <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:hint="wpisz nazwę miejsca"
+                  android:height="80dp"
+
+                />
+
+        <LinearLayout   android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                >
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                          android:orientation="vertical"
+                          android:layout_weight="1"
+                    >
+                <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="nazwa"
+                        />
+
+                <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                             android:text="współrzędne geo."
+                        />
+
+
+            </LinearLayout>
+
+            <RelativeLayout android:layout_width="0dp" android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                <CheckBox   android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:id="@+id/checkBox_distance_from"
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true"
+                        />
+
+                <Spinner android:layout_width="wrap_content" android:layout_height="wrap_content"
+                         android:entries="@array/search_distance_values"
+                         android:layout_toRightOf="@id/checkBox_distance_from"
+                         android:layout_centerVertical="true"
+                         android:layout_centerHorizontal="true"
+
+
+                        />
+
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+    <!--Dtes of Relic-->
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:id="@+id/layout_location"
+                  android:clickable="true"
+                  android:layout_marginTop="@dimen/details_title_margin"
+
+            >
+
+        <View
+                android:background="@color/gray_horizontal_ruler_DN"
+                android:layout_height="1dp"
+                android:layout_width="fill_parent"/>
+
+        <TextView
+                android:id="@+id/tv_location_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data powstania"
+                android:layout_marginTop="@dimen/details_title_margin"
+                style="@style/font_section_header"
+
+                />
+
+        <LinearLayout   android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                >
+
+            <RelativeLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                          android:orientation="vertical"
+                          android:layout_weight="1"
+                    >
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="od:"
+                          android:id="@+id/tv_relic_date_from"
+                          android:layout_centerVertical="true"
+                        />
+
+                <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
+                             android:hint="podaj datę od"
+                             android:layout_toRightOf="@id/tv_relic_date_from"
+                             android:layout_centerVertical="true"
+                        />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout android:layout_width="0dp" android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="do:"
+                          android:id="@+id/tv_relic_date_from"
+                          android:layout_centerVertical="true"
+                        />
+
+                <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:hint="podaj datę do"
+                          android:layout_toRightOf="@id/tv_relic_date_from"
+                          android:layout_centerVertical="true"
+                        />
+
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
 
     <!-- Default View of Main Activity TODO: put it into fragment-->
     <LinearLayout
