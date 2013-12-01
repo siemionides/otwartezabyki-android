@@ -4,6 +4,7 @@ import android.app.Instrumentation;
 import android.content.res.Resources;
 import android.support.v4.app.FragmentActivity;
 import android.test.ActivityInstrumentationTestCase2;
+import pl.siemionczyk.otwartezabytki.activities.MainActivity;
 
 /**
  * Created by michalsiemionczyk on 14/11/13.

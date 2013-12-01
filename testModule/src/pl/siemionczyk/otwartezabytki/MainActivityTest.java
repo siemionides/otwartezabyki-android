@@ -1,6 +1,7 @@
 package pl.siemionczyk.otwartezabytki;
 
 import android.test.ActivityInstrumentationTestCase2;
+import pl.siemionczyk.otwartezabytki.activities.MainActivity;
 
 /**
  * This is a simple framework for a test of an Application.  See

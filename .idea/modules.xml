@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/google-play-services-lib/google-play-services-lib.iml" filepath="$PROJECT_DIR$/google-play-services-lib/google-play-services-lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/otwartezabytki-android/otwartezabytki-android.iml" filepath="$PROJECT_DIR$/otwartezabytki-android/otwartezabytki-android.iml" />
       <module fileurl="file://$PROJECT_DIR$/testModule/testModule.iml" filepath="$PROJECT_DIR$/testModule/testModule.iml" />
     </modules>

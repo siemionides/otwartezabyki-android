@@ -28,7 +28,6 @@ import pl.siemionczyk.otwartezabytki.helper.HelperToolkit;
 import pl.siemionczyk.otwartezabytki.helper.MyLog;
 import pl.siemionczyk.otwartezabytki.rest.OtwarteZabytkiClient;
 import pl.siemionczyk.otwartezabytki.rest.RelicJsonWrapper;
-import pl.siemionczyk.otwartezabytki.service.TestService;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -253,8 +252,8 @@ public class MainActivity extends FragmentActivity {
             f = new MapFragment();
 
             //start service
-            Intent i = new Intent( this, TestService.class );
-            startService( i );
+//            Intent i = new Intent( this, TestService.class );
+//            startService( i );
         }
 
         else if (textButton.equals( getString( R.string.main_menu_settings ) )){

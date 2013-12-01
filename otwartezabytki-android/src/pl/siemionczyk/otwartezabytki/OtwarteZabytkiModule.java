@@ -11,7 +11,7 @@ import pl.siemionczyk.otwartezabytki.activities.MainActivity;
 import pl.siemionczyk.otwartezabytki.event.EventBus;
 import pl.siemionczyk.otwartezabytki.event.OttoEventBus;
 import pl.siemionczyk.otwartezabytki.fragment.RelicsAroundFragment;
-import pl.siemionczyk.otwartezabytki.service.TestService;
+//import pl.siemionczyk.otwartezabytki.service.TestService;
 
 import javax.inject.Singleton;
 //import pl.warsjawa.android2.event.EventBus;
@@ -29,7 +29,7 @@ import javax.inject.Singleton;
            // LauncherActivity.class,
             //LoginActivity.class,
             MainActivity.class,
-             TestService.class,
+//             TestService.class,
             //MeetupsMapFragment.class,
             //MeetupListFragment.class
             //Fragments
