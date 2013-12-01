@@ -1,0 +1,333 @@
+
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                    android:orientation="vertical"
+            >
+
+
+
+
+    <!-- Location -->
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:id="@+id/layout_location"
+                  android:clickable="true"
+            >
+
+        <View
+                android:background="@color/gray_horizontal_ruler_DN"
+                android:layout_height="1dp"
+                android:layout_width="fill_parent"/>
+
+        <TextView
+                android:id="@+id/tv_location_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lokalizacja"
+                android:layout_marginTop="@dimen/details_title_margin"
+                style="@style/font_section_header"
+
+                />
+
+        <TextView
+                android:id="@+id/tv_location_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/details_content_margin"
+
+
+                android:text="Olsztyn, powiat Olsztyn, gmina Olsztyn
+                Olsztyn, powiat Olsztyn, gmina Olsztyn
+                Olsztyn, powiat Olsztyn, gmina Olsztyn
+                Olsztyn, powiat Olsztyn, gmina Olsztyn
+                Olsztyn, powiat Olsztyn, gmina Olsztyn
+                Olsztyn, powiat Olsztyn, gmina Olsztyn"
+
+                />
+
+
+
+    </LinearLayout>
+
+    <!-- Date of beginnig -->
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:id="@+id/layout_date_beginning"
+                  android:layout_marginTop="@dimen/details_title_margin"
+            >
+
+        <View
+                android:background="@color/gray_horizontal_ruler_DN"
+                android:layout_height="1dp"
+                android:layout_width="fill_parent"/>
+
+        <TextView
+                android:id="@+id/tv_date_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data powstania 2"
+                android:layout_marginTop="@dimen/details_title_margin"
+                style="@style/font_section_header"
+
+                />
+
+        <TextView
+                android:id="@+id/tv_date_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/details_content_margin"
+                android:text="1818 - 1830"
+
+                />
+    </LinearLayout>
+
+
+
+    <!--Desription-->
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:id="@+id/layout_date_beginning"
+                  android:layout_marginTop="@dimen/details_title_margin"
+            >
+
+        <View
+                android:background="@color/gray_horizontal_ruler_DN"
+                android:layout_height="1dp"
+                android:layout_width="fill_parent"/>
+
+        <TextView
+                android:id="@+id/tv_desc_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Opis"
+                android:layout_marginTop="@dimen/details_title_margin"
+                style="@style/font_section_header"
+
+                />
+
+        <TextView
+                android:id="@+id/tv_desc_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/details_content_margin"
+                android:text="OPis opis opis opis opis opis opis oposy OPis opis opis opis opis opis opis oposy OPis opis opis opis opis opis opis oposy OPis opis opis opis opis opis opis oposy OPis opis opis opis opis opis opis oposy OPis opis opis opis opis opis opis oposy "
+
+                />
+    </LinearLayout>
+
+
+
+    <!-- Legends-->
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:id="@+id/layout_legends"
+                  android:layout_marginTop="@dimen/details_title_margin"
+            >
+
+        <View
+                android:background="@color/gray_horizontal_ruler_DN"
+                android:layout_height="1dp"
+                android:layout_width="fill_parent"/>
+
+        <TextView
+                android:id="@+id/tv_legends_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ciekawostki, legendy"
+                android:layout_marginTop="@dimen/details_title_margin"
+                style="@style/font_section_header"
+
+                />
+
+        <TextView
+                android:id="@+id/tv_legends_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/details_content_margin"
+                android:text="Legenda nr 1\nLegenda nr 2\nLegenda nr 3\n"
+
+                />
+    </LinearLayout>
+
+
+    <!-- Ważne daty-->
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:id="@+id/layout_important_dates"
+                  android:layout_marginTop="@dimen/details_title_margin"
+            >
+
+        <View
+                android:background="@color/gray_horizontal_ruler_DN"
+                android:layout_height="1dp"
+                android:layout_width="fill_parent"/>
+
+        <TextView
+                android:id="@+id/tv_dates_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ważne daty"
+                android:layout_marginTop="@dimen/details_title_margin"
+                style="@style/font_section_header"
+
+                />
+
+        <TextView
+                android:id="@+id/tv_dates_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/details_content_margin"
+                android:text="1410 - Krzyżacy\n1620 - 210 lat po Krzyżakach\n1914 - ropoczęcie I Wojny Światowej "
+
+                />
+    </LinearLayout>
+
+
+
+
+    <!-- Kategorie-->
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:id="@+id/layout_important_dates"
+                  android:layout_marginTop="@dimen/details_title_margin"
+            >
+
+        <View
+                android:background="@color/gray_horizontal_ruler_DN"
+                android:layout_height="1dp"
+                android:layout_width="fill_parent"/>
+
+        <TextView
+                android:id="@+id/tv_categories_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kategorie"
+                android:layout_marginTop="@dimen/details_title_margin"
+                style="@style/font_section_header"
+
+                />
+
+        <TextView
+                android:id="@+id/tv_categories_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/details_content_margin"
+                android:text="świecki, chrześcijański, użyteczności publicznej, militarny"
+
+                />
+    </LinearLayout>
+
+
+    <!-- Tagi -->
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:id="@+id/layout_tags"
+                  android:layout_marginTop="@dimen/details_title_margin"
+            >
+
+        <View
+                android:background="@color/gray_horizontal_ruler_DN"
+                android:layout_height="1dp"
+                android:layout_width="fill_parent"/>
+
+        <TextView
+                android:id="@+id/tv_tags_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tagi"
+                android:layout_marginTop="@dimen/details_title_margin"
+                style="@style/font_section_header"
+
+                />
+
+        <TextView
+                android:id="@+id/tv_tags_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/details_content_margin"
+                android:text="kościół, Baj, kalwinizm"
+
+                />
+    </LinearLayout>
+
+
+
+    <!-- Nr w rejestrze  -->
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:id="@+id/layout_tags"
+                  android:layout_marginTop="@dimen/details_title_margin"
+            >
+
+        <View
+                android:background="@color/gray_horizontal_ruler_DN"
+                android:layout_height="1dp"
+                android:layout_width="fill_parent"/>
+
+        <TextView
+                android:id="@+id/tv_register_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nr w rejestrze"
+                android:layout_marginTop="@dimen/details_title_margin"
+                style="@style/font_section_header"
+
+                />
+
+        <TextView
+                android:id="@+id/tv_register_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/details_content_margin"
+                android:text="65432-3422"
+
+                />
+    </LinearLayout>
+
+
+
+
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:text="Button" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button1"
+        android:layout_marginTop="24dp"
+        android:layout_toRightOf="@+id/textView1"
+        android:text="TextView" />
+
+    </LinearLayout>
+
+</ScrollView>

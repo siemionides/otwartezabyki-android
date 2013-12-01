@@ -7,6 +7,7 @@ import android.content.Context;
 
 import dagger.Module;
 import dagger.Provides;
+import pl.siemionczyk.otwartezabytki.activities.MainActivity;
 import pl.siemionczyk.otwartezabytki.event.EventBus;
 import pl.siemionczyk.otwartezabytki.event.OttoEventBus;
 import pl.siemionczyk.otwartezabytki.fragment.RelicsAroundFragment;

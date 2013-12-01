@@ -1,10 +1,7 @@
 package pl.siemionczyk.otwartezabytki.service;
 
 import android.app.IntentService;
-import android.app.Service;
 import android.content.Intent;
-import android.os.IBinder;
-import android.os.Looper;
 import com.squareup.otto.Subscribe;
 import pl.siemionczyk.otwartezabytki.OtwarteZabytkiApp;
 import pl.siemionczyk.otwartezabytki.event.EventBus;
@@ -13,7 +10,6 @@ import pl.siemionczyk.otwartezabytki.event.events.ToServiceEvent;
 import pl.siemionczyk.otwartezabytki.helper.MyLog;
 
 import javax.inject.Inject;
-import java.util.logging.Handler;
 
 /**
  * Created by michalsiemionczyk on 14/11/13.

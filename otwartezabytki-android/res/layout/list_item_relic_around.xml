@@ -2,8 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="6dip" >
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+        >
  
     <!-- 
     <CheckBox
@@ -18,56 +20,48 @@
      -->
 
 
+    <ImageView android:layout_width="40dp"
+               android:layout_height="wrap_content"
+               android:id="@+id/relic_icon"
+               android:src="@android:drawable/ic_media_ff"
+
+            />
+
+
     <TextView
-        android:id="@+id/tv_relic_distance"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_relic_name"
+        android:layout_width="280dp"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@id/relic_icon"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="-1km" />
+        android:text="Nazwa zabytku, może być dwulinijkowy\ntak jak ten opis jest wlasnie" />
 
     <LinearLayout
-            android:id="@+id/linear_layout_relic_name"
-            android:layout_width="fill_parent"
+            android:id="@+id/linear_layout_relic_dating_distance"
+            android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+
             >
 
         <TextView
-            android:id="@+id/tv_relic_name_label"
+            android:id="@+id/tv_relic_dating"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Relic name: " />
+            android:text="XIX w " />
 
         <TextView
-            android:id="@+id/tv_relic_name"
+            android:id="@+id/tv_relic_distance"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="0.3 km" />
 
-            android:text="hehe" />
     </LinearLayout>
 
-    <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linear_layout_relic_name">
 
-        <TextView
-            android:id="@+id/tv_relic_date_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_relic_name_label"
-            android:text="Relic dating: " />
-
-        <TextView
-            android:id="@+id/tv_relic_date"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/tv_relic_date_label"
-            android:text="super" />
-    </LinearLayout>
 
 
 </RelativeLayout>

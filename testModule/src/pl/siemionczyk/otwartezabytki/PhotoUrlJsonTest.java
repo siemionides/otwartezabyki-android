@@ -1,11 +1,6 @@
 package pl.siemionczyk.otwartezabytki;
 
-import android.content.res.Resources;
 import android.test.AndroidTestCase;
-import android.test.MoreAsserts;
-import android.test.ViewAsserts;
-import android.test.mock.MockContext;
-import junit.framework.TestCase;
 import pl.siemionczyk.otwartezabytki.rest.PhotoUrlJson;
 
 /**

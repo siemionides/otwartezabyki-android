@@ -6,14 +6,61 @@
               android:layout_height="match_parent">
 
     <TextView
-            android:layout_width="178dp"
-            android:layout_height="64dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Zabytki w okolicy"
-            android:id="@+id/textView"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:id="@+id/textView_title"
             android:layout_gravity="left|center_vertical"/>
 
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:paddingLeft="@dimen/activity_horizontal_margin"
+                  android:paddingTop="@dimen/activity_vertical_margin"
+            >
 
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout   android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+
+            <TextView   android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Znaleziono zabytków: "
+                    />
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/tv_nr_relic_found"
+                      android:text=" ... "
+                    />
+        </LinearLayout>
+
+
+        <LinearLayout   android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+
+            <TextView   android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="W promieniu [km] : "
+                    />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="..."
+                      android:id="@+id/tv_relic_found_radius"
+                    />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+            >
 
         <ListView android:layout_width="match_parent"
                   android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package pl.siemionczyk.otwartezabytki;
+package pl.siemionczyk.otwartezabytki.activities;
 
 
 import android.content.Intent;
@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,9 +16,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import butterknife.InjectView;
-import butterknife.Views;
 import com.squareup.otto.Subscribe;
+import pl.siemionczyk.otwartezabytki.OtwarteZabytkiApp;
+import pl.siemionczyk.otwartezabytki.R;
 import pl.siemionczyk.otwartezabytki.event.EventBus;
 import pl.siemionczyk.otwartezabytki.event.events.FromServiceEvent;
 import pl.siemionczyk.otwartezabytki.event.events.TestEvent;
@@ -37,13 +36,13 @@ import retrofit.client.Response;
 import javax.inject.Inject;
 
 
-public class MainActivity extends FragmentActivity{
+public class MainActivity extends FragmentActivity {
 	
 	private final static String TAG = "MainActivity";
 
-    @InjectView( R.id.drawer_layout )  DrawerLayout mDrawerLayout;
+     DrawerLayout mDrawerLayout;
 
-    @InjectView( R.id.left_drawer )     ListView mDrawerList;
+     ListView mDrawerList;
 
     ActionBarDrawerToggle mDrawerToggle;
 
@@ -68,10 +67,11 @@ public class MainActivity extends FragmentActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.navigation_drawer );
 
-        ((OtwarteZabytkiApp) getApplication()).inject(this);
+        ((OtwarteZabytkiApp ) getApplication()).inject(this);
 
         //inject Views
-        Views.inject( this);
+        mDrawerList = (ListView) findViewById( R.id.left_drawer );
+        mDrawerLayout = (DrawerLayout) findViewById( R.id.drawer_layout );
 
         configureLeftMenu();
 
@@ -148,6 +148,8 @@ public class MainActivity extends FragmentActivity{
         outState.putInt(STATE_SELECTED_NAVIGATION_ITEM, getActionBar()
                 .getSelectedNavigationIndex());
     }
+
+
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override

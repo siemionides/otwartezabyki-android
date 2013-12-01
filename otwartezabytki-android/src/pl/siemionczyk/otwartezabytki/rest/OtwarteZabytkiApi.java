@@ -26,7 +26,7 @@ public interface OtwarteZabytkiApi {
      * @param cb
      */
     @GET("/relics.json")
-    void getRelics(@Query("latitude") float latitude, @Query("longitude") float longitude,
+    void getRelics(@Query("latitude") double latitude, @Query("longitude") double longitude,
                    @Query("distance") float radius, @Query("has_photos") boolean hasPhotos,
                    Callback<RelicJsonWrapper> cb);
 

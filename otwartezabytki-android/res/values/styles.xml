@@ -17,4 +17,17 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+
+    <!-- fonts -->
+
+    <style name="font_section_header">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="font_section_normal">
+
+    </style>
+
 </resources>

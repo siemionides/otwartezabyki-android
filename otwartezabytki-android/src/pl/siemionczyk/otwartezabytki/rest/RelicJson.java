@@ -9,6 +9,9 @@ public class RelicJson {
 	public String identification;
 	public String description;
 	public String place_name;
+    public float latitude;
+    public float longitude;
+
 	
 	public ArrayList<PhotoJson> photos;
 	

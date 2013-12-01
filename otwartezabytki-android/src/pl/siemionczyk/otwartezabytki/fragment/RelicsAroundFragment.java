@@ -1,18 +1,22 @@
 package pl.siemionczyk.otwartezabytki.fragment;
 
+import android.content.Context;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import butterknife.InjectView;
-import butterknife.Views;
+import android.widget.TextView;
 import pl.siemionczyk.otwartezabytki.OtwarteZabytkiApp;
 import pl.siemionczyk.otwartezabytki.R;
+import pl.siemionczyk.otwartezabytki.adapters.RelicsAroundAdapter;
 import pl.siemionczyk.otwartezabytki.helper.MyLog;
 import pl.siemionczyk.otwartezabytki.rest.OtwarteZabytkiClient;
 import pl.siemionczyk.otwartezabytki.rest.RelicJson;
@@ -32,11 +36,15 @@ public class RelicsAroundFragment extends Fragment {
 
     public final static String TAG = "RelicsAroundFragment";
 
-    @InjectView( R.id.list_view_relics ) ListView mListViewRelics;
+    ListView mListViewRelics;
 
-    @InjectView( R.id.progress_bar_relics ) LinearLayout mProgressBar;
+    LinearLayout mProgressBar;
 
-    SimpleAdapter mAdapter;
+    RelicsAroundAdapter mAdapter;
+
+    TextView mNrRelicsFound;
+
+    TextView mRadiusRelics;
 
     @Inject
     OtwarteZabytkiClient mClient;
@@ -52,17 +60,63 @@ public class RelicsAroundFragment extends Fragment {
 
         //inject dagger
         ((OtwarteZabytkiApp) getActivity().getApplication()).inject(this);
+
         //inject views
-        Views.inject( this, view);
+        mListViewRelics = ( ListView ) view.findViewById( R.id.list_view_relics );
+        mProgressBar = ( LinearLayout ) view.findViewById( R.id.progress_bar_relics );
+        mNrRelicsFound = ( TextView ) view.findViewById( R.id.tv_nr_relic_found );
+        mRadiusRelics = ( TextView ) view.findViewById( R.id.tv_relic_found_radius );
 
-        //donwload
-        downloadListRelics();
 
-//       mAdapter = new SimpleAdapter( getActivity(), null, android.R.layout.simple_list_item_2,  )
-
-//        mListViewRelics.setAdapter( mAdapter );
+        //get positionInfo
+        getLocationInfoAndUpdateRelics( view );
 
         return view;
+    }
+
+    private void getLocationInfoAndUpdateRelics ( View rootView) {
+        LocationManager locationManager;
+        String svcName = Context.LOCATION_SERVICE;
+        locationManager = ( LocationManager) getActivity().getSystemService(svcName);
+
+        final TextView title = ( TextView) rootView.findViewById( R.id.textView_title);
+
+
+        LocationListener ll = new LocationListener() {
+            @Override
+            public void onLocationChanged ( Location location ) {
+                MyLog.i( TAG, "onLocationChanged: long: " + location.getLongitude() + ", lat:" + location.getLatitude()   );
+
+                String latLongString;
+                latLongString = "lat: " + location.getLatitude() + ", long: " + location.getLongitude();
+
+                //set this temporary view value
+                title.setText( latLongString ); 
+                //donwload the relics
+                downloadListRelics( location.getLatitude(), location.getLongitude(), 2f);
+            }
+
+            @Override
+            public void onStatusChanged ( String provider, int status, Bundle extras ) {
+                MyLog.i( TAG, "onStatusChanged"  );
+
+            }
+
+            @Override
+            public void onProviderEnabled ( String provider ) {
+                MyLog.i( TAG, "onProviderEnabled"  );
+
+            }
+
+            @Override
+            public void onProviderDisabled ( String provider ) {
+                MyLog.i( TAG, "onProviderDisabled"  );
+
+            }
+        };
+
+        locationManager.requestSingleUpdate( LocationManager.GPS_PROVIDER, ll, null );
+
     }
 
     private void fillListView( ArrayList<RelicJson> relics){
@@ -77,17 +131,18 @@ public class RelicsAroundFragment extends Fragment {
             list.add( map );
         }
 
-
-
-        mAdapter = new SimpleAdapter( getActivity(), list, android.R.layout.simple_list_item_2,
-                new String[]{"name", "place"}, new int[] {android.R.id.text1, android.R.id.text2 });
+        mAdapter = new RelicsAroundAdapter( getActivity(), R.layout.list_item_relic_around, relics );
 
         mListViewRelics.setAdapter( mAdapter );
     }
 
 
 
-    private void downloadListRelics(){
+    /**
+     * @param latitude szerokość
+     * @param longitude długość geograf
+     * @param radius in kilometers*/
+    private void downloadListRelics( double latitude, double longitude, float radius){
 
         Callback<RelicJsonWrapper> cb = new Callback<RelicJsonWrapper>() {
             @Override
@@ -108,6 +163,6 @@ public class RelicsAroundFragment extends Fragment {
                 MyLog.i( TAG, "failture on connection:" + retrofitError );
             }
         };
-        mClient.getSideEffectsAround( 52.232222f, 21.008333f, 1.3f, true, cb );
+        mClient.getSideEffectsAround( (float) latitude, (float) longitude, radius, true, cb );
     }
 }

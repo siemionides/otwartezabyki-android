@@ -24,7 +24,7 @@
 
 
     <!-- dialogs / progress bars / etc-->
-    <string name="progres_bar_loading_relics">Ściąganie listy zabytków</string>
+    <string name="progres_bar_loading_relics">Wyszukiwanie listy zabytków w okolicy</string>
 
 
 </resources>

@@ -39,7 +39,7 @@ public class OtwarteZabytkiClient {
     }
 
 
-    public void getSideEffectsAround(float latitude, float longitute, float radius,
+    public void getSideEffectsAround(double latitude, double longitute, float radius,
                                      boolean hasPhotos,
                                      Callback<RelicJsonWrapper> cb){
 

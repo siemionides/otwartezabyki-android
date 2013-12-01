@@ -169,14 +169,14 @@ public class SearchRelicFragment extends Fragment {
                         null);
 
                 holder = new ViewHolder();
-                holder.relicNameLabel = (TextView) convertView
-                        .findViewById(R.id.tv_relic_name_label);
+//                holder.relicNameLabel = (TextView) convertView
+//                        .findViewById(R.id.tv_relic_name_label);
                 holder.relicName = (TextView) convertView
                         .findViewById(R.id.tv_relic_name);
-                holder.relicDateLabel = (TextView) convertView
-                        .findViewById(R.id.tv_relic_date_label);
-                holder.relicDate = (TextView) convertView
-                        .findViewById(R.id.tv_relic_date);
+//                holder.relicDateLabel = (TextView) convertView
+//                        .findViewById(R.id.tv_relic_date_label);
+//                holder.relicDate = (TextView) convertView
+//                        .findViewById(R.id.tv_relic_date);
                 holder.relicDistanceTo = (TextView) convertView
                         .findViewById(R.id.tv_relic_distance);
                 convertView.setTag(holder);
@@ -193,39 +193,6 @@ public class SearchRelicFragment extends Fragment {
             return convertView;
         }
 
-//        private String formatStationInfoText(Station station) {
-//            String stationDistrict = station.getDistrict();
-//            int bikes = station.getBicycles();
-//
-//            String bikesString = Integer.toString(bikes);
-//            if (bikes == Station.MORE_THAN_FOUR) {
-//                bikesString = "4+";
-//            }
-//
-//            return "Station district: " + stationDistrict + "\nBikes: "
-//                    + bikesString;
-//        }
 
-//        private String formatStationMessagesText(Station station) {
-//
-//            InformativeMessage informative = station
-//                    .getLastInformativeMessage();
-//            LogisticalMessage logistical = station.getLastLogisticalMessage();
-//            ServiceMessage service = station.getLastServiceMessage();
-//
-//            String informativeText = (informative == null) ? "" : informative
-//                    .getText();
-//            String logisticalText = (logistical == null) ? "" : logistical
-//                    .getText();
-//            String serviceText = (informative == null) ? "" : service.getText();
-//
-//            String messages = "Inf: " + informativeText + "\nLog: "
-//                    + logisticalText + "\nServ: " + serviceText;
-//            return messages;
-//        }
-
-//        private String formatDistanceToText(Station station) {
-//            return station.getDistanceTo().toString() + " km";
-//        }
     }
 }
