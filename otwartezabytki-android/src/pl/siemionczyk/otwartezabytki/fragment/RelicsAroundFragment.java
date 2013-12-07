@@ -10,13 +10,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import pl.siemionczyk.otwartezabytki.OtwarteZabytkiApp;
 import pl.siemionczyk.otwartezabytki.R;
+import pl.siemionczyk.otwartezabytki.activities.MainActivity;
+import pl.siemionczyk.otwartezabytki.activities.RelicDetailsActivity;
 import pl.siemionczyk.otwartezabytki.adapters.RelicsAroundAdapter;
+import pl.siemionczyk.otwartezabytki.helper.HelperToolkit;
 import pl.siemionczyk.otwartezabytki.helper.MyLog;
 import pl.siemionczyk.otwartezabytki.rest.OtwarteZabytkiClient;
 import pl.siemionczyk.otwartezabytki.rest.RelicJson;
@@ -72,8 +76,25 @@ public class RelicsAroundFragment extends Fragment {
         mRadiusRelics = ( TextView ) view.findViewById( R.id.tv_relic_found_radius );
 
 
+        //set list on click listener
+        mListViewRelics.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //get relic
+                RelicsAroundAdapter adapt = ( RelicsAroundAdapter) parent.getAdapter();
+                RelicJson relic = adapt.getItem(position);
+                HelperToolkit.makeToast( getActivity(), relic.identification);
+
+
+                (( MainActivity) getActivity()).replaceToRelicDetailsFragment( relic);
+
+
+            }
+        });
+
+
         //get positionInfo
-        getLocationInfoAndUpdateRelics( view,RADIUS_OF_SEARCH);
+        getLocationInfoAndUpdateRelics(view, RADIUS_OF_SEARCH);
 
         return view;
     }

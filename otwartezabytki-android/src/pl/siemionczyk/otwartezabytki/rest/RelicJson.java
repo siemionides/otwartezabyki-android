@@ -1,8 +1,9 @@
 package pl.siemionczyk.otwartezabytki.rest;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class RelicJson {
+public class RelicJson implements Serializable {
 
 	public int id;
 	public String dating_of_obj;

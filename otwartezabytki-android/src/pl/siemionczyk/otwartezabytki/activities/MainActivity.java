@@ -27,6 +27,7 @@ import pl.siemionczyk.otwartezabytki.fragment.*;
 import pl.siemionczyk.otwartezabytki.helper.HelperToolkit;
 import pl.siemionczyk.otwartezabytki.helper.MyLog;
 import pl.siemionczyk.otwartezabytki.rest.OtwarteZabytkiClient;
+import pl.siemionczyk.otwartezabytki.rest.RelicJson;
 import pl.siemionczyk.otwartezabytki.rest.RelicJsonWrapper;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -39,9 +40,11 @@ public class MainActivity extends FragmentActivity {
 	
 	private final static String TAG = "MainActivity";
 
-     DrawerLayout mDrawerLayout;
+    public static final String FRAGMENT_BUNDLE_RELIC_JSON_KEY = "relicsjsonkey";
 
-     ListView mDrawerList;
+    DrawerLayout mDrawerLayout;
+
+    ListView mDrawerList;
 
     ActionBarDrawerToggle mDrawerToggle;
 
@@ -277,6 +280,21 @@ public class MainActivity extends FragmentActivity {
         mDrawerList.setItemChecked(position, true);
         setTitle( textButton );
         mDrawerLayout.closeDrawer(mDrawerList);
+    }
+
+
+    public void replaceToRelicDetailsFragment( RelicJson relicToShow){
+        RelicDetailsFragment fragment = new RelicDetailsFragment(); //TODO, find one in stack
+
+        Bundle b = new Bundle();
+        b.putSerializable( FRAGMENT_BUNDLE_RELIC_JSON_KEY, relicToShow);
+        fragment.setArguments( b);
+
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+                .replace( R.id.content_frame, fragment)
+                .addToBackStack( null)
+                .commit();
     }
 
 }
