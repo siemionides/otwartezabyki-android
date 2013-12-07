@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import pl.siemionczyk.otwartezabytki.R;
 import pl.siemionczyk.otwartezabytki.helper.MyLog;
-import pl.siemionczyk.otwartezabytki.rest.RelicJson;
+import pl.siemionczyk.otwartezabytki.rest.relicjson.RelicJson;
 
 import java.util.List;
 

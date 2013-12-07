@@ -1,7 +1,7 @@
 package pl.siemionczyk.otwartezabytki;
 
 import android.test.AndroidTestCase;
-import pl.siemionczyk.otwartezabytki.rest.PhotoUrlJson;
+import pl.siemionczyk.otwartezabytki.rest.relicjson.PhotoUrlJson;
 
 /**
  * Created by michalsiemionczyk on 14/11/13.

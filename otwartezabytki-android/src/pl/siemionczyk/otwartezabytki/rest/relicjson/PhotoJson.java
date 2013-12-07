@@ -1,4 +1,4 @@
-package pl.siemionczyk.otwartezabytki.rest;
+package pl.siemionczyk.otwartezabytki.rest.relicjson;
 
 public class PhotoJson {
 

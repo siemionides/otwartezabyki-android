@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import pl.siemionczyk.otwartezabytki.R;
 import pl.siemionczyk.otwartezabytki.activities.MainActivity;
-import pl.siemionczyk.otwartezabytki.rest.RelicJson;
+import pl.siemionczyk.otwartezabytki.rest.relicjson.RelicJson;
 
 /**
  * Created by majkeliusz on 7/7/13.
@@ -74,7 +74,13 @@ public class RelicDetailsFragment extends Fragment {
 
         tvDescription.setText( relic.description);
 
-        tvLegends.setText( "not yet");
+
+        //insert trivia  / interesting facts / legends
+        String legendsTitles = "";
+        for ( RelicJson.EntryJson entry : relic.entries){
+            legendsTitles += entry.title + " \n";
+        }
+        tvLegends.setText( legendsTitles);
 
         tvDates.setText("not yet");
 
@@ -82,7 +88,7 @@ public class RelicDetailsFragment extends Fragment {
 
         tvTags.setText( "not yet");
 
-        tvRelicRegisterNr.setText( "not yet");
+        tvRelicRegisterNr.setText( relic.register_number);
 
 
 

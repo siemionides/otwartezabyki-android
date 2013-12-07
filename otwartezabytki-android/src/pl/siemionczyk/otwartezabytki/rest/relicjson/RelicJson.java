@@ -1,4 +1,4 @@
-package pl.siemionczyk.otwartezabytki.rest;
+package pl.siemionczyk.otwartezabytki.rest.relicjson;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,9 +10,13 @@ public class RelicJson implements Serializable {
 	public String identification;
 	public String description;
 	public String place_name;
+
+    public String register_number;
     public double latitude;
     public double longitude;
 
+    /** entries stands for trivie / interesting facts*/
+    public ArrayList <EntryJson> entries;
 	
 	public ArrayList<PhotoJson> photos;
 	
@@ -20,6 +24,12 @@ public class RelicJson implements Serializable {
 	public String toString() {
 		return "dating: " + dating_of_obj + ", name: " + identification + " place:" + place_name + " description:" + description;
 	}
+
+
+    public static class EntryJson implements Serializable {
+        public String title;
+        public String body;
+    }
 	
 }
 

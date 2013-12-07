@@ -27,8 +27,8 @@ import pl.siemionczyk.otwartezabytki.fragment.*;
 import pl.siemionczyk.otwartezabytki.helper.HelperToolkit;
 import pl.siemionczyk.otwartezabytki.helper.MyLog;
 import pl.siemionczyk.otwartezabytki.rest.OtwarteZabytkiClient;
-import pl.siemionczyk.otwartezabytki.rest.RelicJson;
 import pl.siemionczyk.otwartezabytki.rest.RelicJsonWrapper;
+import pl.siemionczyk.otwartezabytki.rest.relicjson.RelicJson;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -292,8 +292,8 @@ public class MainActivity extends FragmentActivity {
 
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
-                .replace( R.id.content_frame, fragment)
-                .addToBackStack( null)
+                .replace(R.id.content_frame, fragment)
+                .addToBackStack(null)
                 .commit();
     }
 
