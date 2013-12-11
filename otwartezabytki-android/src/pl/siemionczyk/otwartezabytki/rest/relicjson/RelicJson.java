@@ -15,10 +15,20 @@ public class RelicJson implements Serializable {
     public double latitude;
     public double longitude;
 
+    public ArrayList<String> categories;
+
+    public ArrayList<String> tags;
+
     /** entries stands for trivie / interesting facts*/
     public ArrayList <EntryJson> entries;
-	
-	public ArrayList<PhotoJson> photos;
+
+    /** For events : dates + names*/
+    public ArrayList <EventJson> events;
+
+    public ArrayList<PhotoJson> photos;
+
+
+
 	
 	@Override
 	public String toString() {
@@ -30,6 +40,14 @@ public class RelicJson implements Serializable {
         public String title;
         public String body;
     }
+
+    /** For events : dates + names*/
+    public static class EventJson implements Serializable {
+        public String date;
+        public String name;
+
+    }
+
 	
 }
 

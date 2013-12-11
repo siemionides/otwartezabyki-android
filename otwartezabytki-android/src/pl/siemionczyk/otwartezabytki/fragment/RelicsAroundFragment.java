@@ -176,6 +176,10 @@ public class RelicsAroundFragment extends Fragment {
             public void success ( RelicJsonWrapper relicJsonWrapper, Response response ) {
                 MyLog.i( TAG, "success on downloading relics:" + relicJsonWrapper.relics.size() );
 
+                for (RelicJson r: relicJsonWrapper.relics){
+                    MyLog.i(TAG, "long:" + r.longitude + ", lat:" + r.latitude);
+                }
+
                 //hide progressBar
                 mProgressBar.setVisibility( View.GONE );
 

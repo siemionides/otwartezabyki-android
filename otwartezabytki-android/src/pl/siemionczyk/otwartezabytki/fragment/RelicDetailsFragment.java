@@ -2,6 +2,7 @@ package pl.siemionczyk.otwartezabytki.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,7 +73,9 @@ public class RelicDetailsFragment extends Fragment {
 
         tvDating.setText( relic.dating_of_obj);
 
-        tvDescription.setText( relic.description);
+
+        //insert description
+        tvDescription.setText(Html.fromHtml(relic.description));
 
 
         //insert trivia  / interesting facts / legends
@@ -82,11 +85,40 @@ public class RelicDetailsFragment extends Fragment {
         }
         tvLegends.setText( legendsTitles);
 
-        tvDates.setText("not yet");
 
-        tvCategories.setText("not yet");
+        //insert dates
+        String dates = "";
+        for (RelicJson.EventJson event: relic.events){
+            dates += "<b>" + event.date + "</b> - " + event.name + "<br/><br/>";
+        }
 
-        tvTags.setText( "not yet");
+        if ( !dates.equals("")) dates = dates.substring(0, dates.length()-5);   //this cut the last <br/>
+
+        tvDates.setText( Html.fromHtml( dates));
+
+
+
+        //insert categories
+        StringBuilder catB = new StringBuilder();
+        for ( String cat : relic.categories){
+            catB.append( cat).append(", ");
+        }
+        if ( catB.length() > 0) catB.delete( catB.length()-2, catB.length());  //this cut the last ", "
+
+        tvCategories.setText( catB.toString());
+
+
+        //insert tags
+        StringBuilder tagB = new StringBuilder();
+        for ( String tag : relic.tags){
+            tagB.append( tag).append(", ");
+        }
+        if ( tagB.length() > 0) tagB.delete( tagB.length()-2, tagB.length());  //this cut the last ", "
+
+        tvTags.setText( tagB.toString());
+
+
+
 
         tvRelicRegisterNr.setText( relic.register_number);
 
