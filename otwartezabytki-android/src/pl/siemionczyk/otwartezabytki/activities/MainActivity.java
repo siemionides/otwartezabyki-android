@@ -96,12 +96,7 @@ public class MainActivity extends FragmentActivity {
         bus.unregister( this );
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+
 
     /* Called whenever we call invalidateOptionsMenu() */
     @Override
@@ -117,7 +112,11 @@ public class MainActivity extends FragmentActivity {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
+
         // Handle your other action bar items...
+
+
+
 
         return super.onOptionsItemSelected(item);
     }
