@@ -1,12 +1,14 @@
 package pl.siemionczyk.otwartezabytki.rest.relicjson;
 
-public class PhotoJson {
+import java.io.Serializable;
+
+public class PhotoJson implements Serializable {
 
 	
 	public PhotoFileJson file;
 	
 	
-	public static class PhotoFileJson {
+	public static class PhotoFileJson implements Serializable {
 		public int relic_id;
 		public PhotoUrlJson icon;
 		public PhotoUrlJson mini;

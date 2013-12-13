@@ -1,24 +1,26 @@
 package pl.siemionczyk.otwartezabytki.fragment;
 
 import android.content.Context;
-import android.location.Criteria;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import pl.siemionczyk.otwartezabytki.OtwarteZabytkiApp;
 import pl.siemionczyk.otwartezabytki.R;
 import pl.siemionczyk.otwartezabytki.activities.MainActivity;
-import pl.siemionczyk.otwartezabytki.activities.RelicDetailsActivity;
+import pl.siemionczyk.otwartezabytki.activities.MapActivity;
 import pl.siemionczyk.otwartezabytki.adapters.RelicsAroundAdapter;
 import pl.siemionczyk.otwartezabytki.helper.HelperToolkit;
 import pl.siemionczyk.otwartezabytki.helper.MyLog;
@@ -99,6 +101,46 @@ public class RelicsAroundFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setHasOptionsMenu(true);
+
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        inflater.inflate(R.menu.menu_relics_around, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_show_grid){
+            HelperToolkit.makeToast( getActivity(), "not yet implemented");
+            return true;
+
+        } else if ( item.getItemId() == R.id.action_map){
+
+            RelicJsonWrapper wrapper = new RelicJsonWrapper();
+            wrapper.relics = mAdapter.getItems();
+
+            Intent i = new Intent( getActivity(), MapActivity.class);
+            i.putExtra( MapActivity.KEY_BUNDLE_RELICS, wrapper);
+
+            startActivity(i);
+
+            return true;
+
+        } else if ( item.getItemId() == R.id.action_search){
+            HelperToolkit.makeToast( getActivity(), "not yet implemented");
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     private void getLocationInfoAndUpdateRelics ( View rootView, final float radius) {
         LocationManager locationManager;
         String svcName = Context.LOCATION_SERVICE;
@@ -148,15 +190,15 @@ public class RelicsAroundFragment extends Fragment {
 
     private void fillListView( ArrayList<RelicJson> relics, Location userLocation){
 
-        ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>(  );
+//        ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>(  );
 
-        //stupind conversion
-        for ( RelicJson r : relics){
-            HashMap<String, String> map = new HashMap<String, String>(  );
-            map.put( "name", r.identification );
-            map.put( "place", r.place_name );
-            list.add( map );
-        }
+//        //stupind conversion
+//        for ( RelicJson r : relics){
+//            HashMap<String, String> map = new HashMap<String, String>(  );
+//            map.put( "name", r.identification );
+//            map.put( "place", r.place_name );
+//            list.add( map );
+//        }
 
         mAdapter = new RelicsAroundAdapter( getActivity(), R.layout.list_item_relic_around, relics, userLocation );
 
