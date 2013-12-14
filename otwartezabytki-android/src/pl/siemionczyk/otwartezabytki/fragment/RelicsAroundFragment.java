@@ -33,7 +33,6 @@ import retrofit.client.Response;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by majkeliusz on 7/7/13.
@@ -87,8 +86,8 @@ public class RelicsAroundFragment extends Fragment {
                 RelicJson relic = adapt.getItem(position);
                 HelperToolkit.makeToast( getActivity(), relic.identification);
 
-
-                (( MainActivity) getActivity()).replaceToRelicDetailsFragment( relic);
+                (( MainActivity) getActivity()).replaceToRelicDetailsFragment(
+                        new RelicJsonWrapper(mAdapter.getItems()), position);
 
 
             }
@@ -242,6 +241,6 @@ public class RelicsAroundFragment extends Fragment {
                 MyLog.i( TAG, "failture on connection:" + retrofitError );
             }
         };
-        mClient.getSideEffectsAround( (float) location.getLatitude(), (float) location.getLongitude(), radius, true, cb );
+        mClient.getRelicsAround((float) location.getLatitude(), (float) location.getLongitude(), radius, true, cb);
     }
 }

@@ -1,7 +1,6 @@
 package pl.siemionczyk.otwartezabytki.activities;
 
 
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -78,7 +77,8 @@ public class MainActivity extends FragmentActivity {
         configureLeftMenu();
 
         //by deafult open 0
-        selectItem( 0, getResources().getString( R.string.main_menu_w_okolicy ));
+//        selectItem( 0, getResources().getString( R.string.main_menu_w_okolicy ));
+        selectItem( 2, getResources().getString( R.string.main_menu_wyszukaj ));
 
 	}
 
@@ -114,10 +114,6 @@ public class MainActivity extends FragmentActivity {
         }
 
         // Handle your other action bar items...
-
-
-
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -226,31 +222,22 @@ public class MainActivity extends FragmentActivity {
             f = new SearchRelicFragment();
             bus.post( new TestEvent() );
         }
-        else if (textButton.equals( getString( R.string.main_menu_wyszukaj ) )) f = new SearchRelicFragment();
+        else if (textButton.equals( getString( R.string.main_menu_wyszukaj ) )){
+            // 2 - SEARCH
+            f = new SearchRelicFragment();
+        }
+
         else if (textButton.equals( getString( R.string.main_menu_dodaj ) )) HelperToolkit.makeToast( this, "Adding relics not implemented yet");
 
+
         else if (textButton.equals( getString( R.string.main_menu_favourites ) )){
-            //test internet here
-            MyLog.i( TAG, "trying to test internet here..." );
-
-            f = new FavouriteRelicsFragment();
-            Callback<RelicJsonWrapper> cb = new Callback<RelicJsonWrapper>() {
-                @Override
-                public void success ( RelicJsonWrapper relicJsonWrapper, Response response ) {
-                    MyLog.i( TAG, "internet success, nrRelics:" + relicJsonWrapper.relics.size() );
-                }
-
-                @Override
-                public void failure ( RetrofitError retrofitError ) {
-                    MyLog.i( TAG, "internet failure:" + retrofitError.getMessage());
-
-                }
-            }            ;
-
-            client.getSideEffects( "Warszawa", "", "", "", cb);
+            //FAVOURITES
+            HelperToolkit.makeToast( this, "Favourites are not implemented yet");
         }
 
         else if (textButton.equals( getString( R.string.main_menu_map ) )){
+            //MAP
+
             f = new MapFragment();
 
         }
@@ -282,11 +269,13 @@ public class MainActivity extends FragmentActivity {
     }
 
 
-    public void replaceToRelicDetailsFragment( RelicJson relicToShow){
-        RelicDetailsFragment fragment = new RelicDetailsFragment(); //TODO, find one in stack
+    public void replaceToRelicDetailsFragment( RelicJsonWrapper relicWrapper, int currentItem){
+        RelicsDetailsPagerFragment fragment = new RelicsDetailsPagerFragment(); //TODO, find one in stack
 
         Bundle b = new Bundle();
-        b.putSerializable( FRAGMENT_BUNDLE_RELIC_JSON_KEY, relicToShow);
+        b.putSerializable( RelicsDetailsPagerFragment.KEY_BUNDLE_RELICS, relicWrapper);
+        b.putSerializable( RelicsDetailsPagerFragment.KEY_BUNDLE_RELIC_POSITION, currentItem);
+
         fragment.setArguments( b);
 
         getSupportFragmentManager().beginTransaction()

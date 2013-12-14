@@ -17,7 +17,6 @@ import pl.siemionczyk.otwartezabytki.rest.relicjson.RelicJson;
  */
 public class RelicDetailsFragment extends Fragment {
 
-
     TextView tvRelicName;
     TextView tvLocation;
     TextView tvDating;
@@ -27,10 +26,6 @@ public class RelicDetailsFragment extends Fragment {
     TextView tvCategories;
     TextView tvTags;
     TextView tvRelicRegisterNr;
-
-
-
-
 
 
     @Override
@@ -52,16 +47,11 @@ public class RelicDetailsFragment extends Fragment {
         tvTags = ( TextView) view.findViewById( R.id.tv_tags_content);
         tvRelicRegisterNr = ( TextView) view.findViewById( R.id.tv_register_content);
 
-
-
-
-
+        //get RelicsJson from arguments
         Bundle b = getArguments();
         if ( b != null && b.containsKey( MainActivity.FRAGMENT_BUNDLE_RELIC_JSON_KEY)){
             fillViewsWithContent( (RelicJson) b.get( MainActivity.FRAGMENT_BUNDLE_RELIC_JSON_KEY));
         }
-
-
 
         return view;
     }
@@ -73,10 +63,8 @@ public class RelicDetailsFragment extends Fragment {
 
         tvDating.setText( relic.dating_of_obj);
 
-
         //insert description
         tvDescription.setText(Html.fromHtml(relic.description));
-
 
         //insert trivia  / interesting facts / legends
         String legendsTitles = "";

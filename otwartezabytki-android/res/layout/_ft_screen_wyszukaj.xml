@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
+ <ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+
+    >
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
@@ -8,15 +18,6 @@
               android:paddingRight="@dimen/activity_horizontal_margin"
 
         >
-
-
-
-
-
-
-
-
-
 
     <TextView
             android:layout_width="178dp"
@@ -50,12 +51,12 @@
 
                 />
 
-
-        <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
+        <EditText android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:hint="wpisz nazwę zabytku"
-                android:height="80dp"
-
+                android:id="@+id/et_relic_name"
                 />
+
     </LinearLayout>
 
 
@@ -86,13 +87,15 @@
                 />
 
 
-        <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
                   android:hint="wpisz nazwę miejsca"
-                  android:height="80dp"
+                android:id="@+id/et_place_name"
 
                 />
 
-        <LinearLayout   android:layout_width="match_parent" android:layout_height="wrap_content"
+        <LinearLayout   android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
                         android:orientation="horizontal"
                 >
 
@@ -100,14 +103,29 @@
                           android:orientation="vertical"
                           android:layout_weight="1"
                     >
-                <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:text="nazwa"
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radiogroup"
+                    >
+
+                    <RadioButton android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="nazwa"
+                                android:checked="true"
+                                android:id="@+id/radio_name"
+
+                            />
+
+                    <RadioButton android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="współrzędne geo."
+                                android:id="@+id/radio_geolocation"
+
                         />
 
-                <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                             android:text="współrzędne geo."
-                        />
-
+                </RadioGroup>
 
             </LinearLayout>
 
@@ -120,16 +138,15 @@
                             android:layout_centerHorizontal="true"
                         />
 
-                <Spinner android:layout_width="wrap_content" android:layout_height="wrap_content"
+                <Spinner android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
                          android:entries="@array/search_distance_values"
+                         android:id="@+id/spinner_distances"
                          android:layout_toRightOf="@id/checkBox_distance_from"
                          android:layout_centerVertical="true"
                          android:layout_centerHorizontal="true"
 
-
                         />
-
-
 
             </RelativeLayout>
 
@@ -185,6 +202,7 @@
                              android:hint="podaj datę od"
                              android:layout_toRightOf="@id/tv_relic_date_from"
                              android:layout_centerVertical="true"
+                                android:id="@+id/et_date_from"
                         />
 
 
@@ -203,6 +221,7 @@
                           android:hint="podaj datę do"
                           android:layout_toRightOf="@id/tv_relic_date_from"
                           android:layout_centerVertical="true"
+                          android:id="@+id/et_date_to"
                         />
 
 
@@ -226,19 +245,19 @@
 
 
         <Button
-                android:id="@+id/button1"
+                android:id="@+id/button_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView1"
+                android:layout_gravity="center"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="26dp"
-                android:text="Button" />
+                android:text=""
+                android:background="@android:drawable/ic_menu_search"
+            />
 
-        <ListView
-                android:id="@+id/listRelicsAround"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"/>
 
 
     </LinearLayout>
 </LinearLayout>
+</ScrollView>

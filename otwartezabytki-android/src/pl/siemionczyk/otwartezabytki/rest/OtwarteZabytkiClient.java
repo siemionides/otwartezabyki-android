@@ -22,7 +22,6 @@ public class OtwarteZabytkiClient {
     public OtwarteZabytkiClient(){
 //        new
         Gson gson = new Gson();
-//        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setServer("http://otwartezabytki.pl/api/v1")
                 .setConverter(new GsonConverter(gson))
@@ -39,11 +38,11 @@ public class OtwarteZabytkiClient {
     }
 
 
-    public void getSideEffectsAround(double latitude, double longitute, float radius,
-                                     boolean hasPhotos,
-                                     Callback<RelicJsonWrapper> cb){
+    public void getRelicsAround(double latitude, double longitude, float radius,
+                                boolean hasPhotos,
+                                Callback<RelicJsonWrapper> cb){
 
-        api.getRelics( latitude, longitute, radius,  hasPhotos, cb );
+        api.getRelics( latitude, longitude, radius,  hasPhotos, cb );
 
     }
 
