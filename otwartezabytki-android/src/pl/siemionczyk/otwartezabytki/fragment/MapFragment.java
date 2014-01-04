@@ -20,20 +20,6 @@ import pl.siemionczyk.otwartezabytki.R;
  * - of the relics around (based on settings)
  * - of the relics provided in intent
  *
- * 2-11 23:49:41.296    5385-5385/pl.siemionczyk.otwartezabytki I/RelicsAroundFragment﹕ long:20.9767578, lat:52.2445059
- 12-11 23:49:41.296    5385-5385/pl.siemionczyk.otwartezabytki I/RelicsAroundFragment﹕ long:20.9952901, lat:52.2227739
- 12-11 23:49:41.296    5385-5385/pl.siemionczyk.otwartezabytki I/RelicsAroundFragment﹕ long:21.004586, lat:52.2467069
- 12-11 23:49:41.296    5385-5385/pl.siemionczyk.otwartezabytki I/RelicsAroundFragment﹕ long:21.0064631, lat:52.2237114
- 12-11 23:49:41.296    5385-5385/pl.siemionczyk.otwartezabytki I/RelicsAroundFragment﹕ long:21.0133561, lat:52.2477023
- 12-11 23:49:41.296    5385-5385/pl.siemionczyk.otwartezabytki I/RelicsAroundFragment﹕ long:20.983705, lat:52.2197176
- 12-11 23:49:41.296    5385-5385/pl.siemionczyk.otwartezabytki I/RelicsAroundFragment﹕ long:21.0400586, lat:52.2358226
- 12-11 23:49:41.296    5385-5385/pl.siemionczyk.otwartezabytki I/RelicsAroundFragment﹕ long:21.0039553, lat:52.2471153
- 12-11 23:49:41.296    5385-5385/pl.siemionczyk.otwartezabytki I/RelicsAroundFragment﹕ long:21.0304514, lat:52.2194941
- 12-11 23:49:41.296    5385-5385/pl.siemionczyk.otwartezabytki I/RelicsAroundFragment﹕ long:21.0126471, lat:52.235749
- 12-11 23:49:41.296    5385-5385/pl.siemionczyk.otwartezabytki I/RelicsAroundFragment﹕ long:21.0227643, lat:52.2395953
- 12-11 23:49:41.296    5385-5385/pl.siemionczyk.otwartezabytki I/RelicsAroundFragment﹕ long:21.0013723, lat:52.2456439
- 12-11 23:49:41.296    5385-5385/pl.siemionczyk.otwartezabytki I/RelicsAroundFragment﹕ long:21.0064816, lat:52.2317554
- 12-11 23:49:41.296    5385-5385/pl.siemionczyk.otwartezabytki I/RelicsAroundFragment﹕ long:21.0285955, lat:52.2225188
  *
  */
 public class MapFragment extends Fragment {

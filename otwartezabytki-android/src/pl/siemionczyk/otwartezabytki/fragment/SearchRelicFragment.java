@@ -1,5 +1,6 @@
 package pl.siemionczyk.otwartezabytki.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,8 +14,10 @@ import android.widget.Spinner;
 
 import javax.inject.Inject;
 
+import pl.siemionczyk.otwartezabytki.BundleKeys;
 import pl.siemionczyk.otwartezabytki.OtwarteZabytkiApp;
 import pl.siemionczyk.otwartezabytki.R;
+import pl.siemionczyk.otwartezabytki.activities.SearchResultRelicListActivity;
 import pl.siemionczyk.otwartezabytki.helper.MyLog;
 import pl.siemionczyk.otwartezabytki.rest.OtwarteZabytkiClient;
 import pl.siemionczyk.otwartezabytki.rest.RelicJsonWrapper;
@@ -34,6 +37,8 @@ public class SearchRelicFragment extends Fragment {
 
 
     CheckBox mCheckBoxDistance;
+
+    CheckBox mCheckBoxOnlyWithPhotos;
 
     Spinner mSpinnerDistances;
 
@@ -98,23 +103,30 @@ public class SearchRelicFragment extends Fragment {
 
         mEtDateTo = ( EditText) rootView.findViewById( R.id.et_date_to);
 
+        mCheckBoxOnlyWithPhotos = ( CheckBox) rootView.findViewById( R.id.checkBox_has_photos);
+
 
     }
 
     private void performRequestAndDisplayResults() {
+        //get data from UI
         String relicName = mEtRelicName.getText().toString();
-
         String relicPlace = mEtPlaceName.getText().toString();
-
         String dateFrom = mEtDateFrom.getText().toString();
-
         String dateTo = mEtDateTo.getText().toString();
+        boolean onlyWithPhotos = mCheckBoxOnlyWithPhotos.isChecked();
+
 
         Callback<RelicJsonWrapper> cb = new Callback<RelicJsonWrapper>(){
 
             @Override
             public void success(RelicJsonWrapper relicJsonWrapper, Response response) {
                 MyLog.i( TAG, "success!");
+
+
+                Intent i = new Intent( SearchRelicFragment.this.getActivity(), SearchResultRelicListActivity.class);
+                i.putExtra( BundleKeys.KEY_BUNDLE_RELICS_WRAPPER, relicJsonWrapper);
+                SearchRelicFragment.this.startActivity( i);
             }
 
             @Override
@@ -124,7 +136,8 @@ public class SearchRelicFragment extends Fragment {
             }
         };
 
-        mClient.getSideEffects( relicPlace, relicName, dateFrom, dateTo, cb );
+
+        mClient.getSideEffects( relicPlace, relicName, dateFrom, dateTo, onlyWithPhotos, cb );
 
     }
 

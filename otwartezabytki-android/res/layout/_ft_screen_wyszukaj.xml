@@ -51,9 +51,10 @@
 
                 />
 
+        <!--android:hint="wpisz nazwę zabytku"-->
+
         <EditText android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="wpisz nazwę zabytku"
                 android:id="@+id/et_relic_name"
                 />
 
@@ -86,10 +87,9 @@
 
                 />
 
-
+        <!--android:hint="wpisz nazwę miejsca"-->
         <EditText android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:hint="wpisz nazwę miejsca"
                 android:id="@+id/et_place_name"
 
                 />
@@ -129,26 +129,60 @@
 
             </LinearLayout>
 
-            <RelativeLayout android:layout_width="0dp" android:layout_height="match_parent"
-                            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
 
-                <CheckBox   android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:id="@+id/checkBox_distance_from"
-                            android:layout_centerVertical="true"
-                            android:layout_centerHorizontal="true"
+                <!-- Spinnder with radiuses-->
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    >
+
+                    <CheckBox   android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkBox_distance_from"
                         />
 
-                <Spinner android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:entries="@array/search_distance_values"
-                         android:id="@+id/spinner_distances"
-                         android:layout_toRightOf="@id/checkBox_distance_from"
-                         android:layout_centerVertical="true"
-                         android:layout_centerHorizontal="true"
-
+                    <Spinner android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:entries="@array/search_distance_values"
+                        android:id="@+id/spinner_distances"
                         />
 
-            </RelativeLayout>
+                </LinearLayout>
+
+
+                <!--has photos checkbox-->
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    >
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkBox_has_photos"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/has_photos"
+                        />
+
+                </LinearLayout>
+
+
+
+             </LinearLayout>
+
+
 
 
 
@@ -198,8 +232,10 @@
                           android:layout_centerVertical="true"
                         />
 
-                <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
-                             android:hint="podaj datę od"
+                <!--android:hint="podaj datę od"-->
+
+                <EditText android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                              android:layout_toRightOf="@id/tv_relic_date_from"
                              android:layout_centerVertical="true"
                                 android:id="@+id/et_date_from"
@@ -217,8 +253,10 @@
                           android:layout_centerVertical="true"
                         />
 
-                <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:hint="podaj datę do"
+                <!--android:hint="podaj datę do"-->
+
+                <EditText android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                           android:layout_toRightOf="@id/tv_relic_date_from"
                           android:layout_centerVertical="true"
                           android:id="@+id/et_date_to"

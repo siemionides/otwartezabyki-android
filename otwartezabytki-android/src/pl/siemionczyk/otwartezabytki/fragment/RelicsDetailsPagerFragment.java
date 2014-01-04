@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import pl.siemionczyk.otwartezabytki.BundleKeys;
 import pl.siemionczyk.otwartezabytki.R;
 import pl.siemionczyk.otwartezabytki.activities.MainActivity;
 import pl.siemionczyk.otwartezabytki.rest.RelicJsonWrapper;
@@ -21,8 +22,6 @@ import pl.siemionczyk.otwartezabytki.rest.relicjson.RelicJson;
  */
 public class RelicsDetailsPagerFragment extends Fragment {
 
-    public final static String KEY_BUNDLE_RELICS = "relicc bundle";
-    public final static String KEY_BUNDLE_RELIC_POSITION = "relicc position";
 
 
     ViewPager mPager;
@@ -38,11 +37,11 @@ public class RelicsDetailsPagerFragment extends Fragment {
                 R.layout._ft_relic_details_pager, container, false);
 
         //get wrapper from bundle
-        if ( !getArguments().containsKey( KEY_BUNDLE_RELICS) || !getArguments().containsKey( KEY_BUNDLE_RELIC_POSITION)){
+        if ( !getArguments().containsKey(BundleKeys.KEY_BUNDLE_RELICS_WRAPPER) || !getArguments().containsKey( BundleKeys.KEY_BUNDLE_RELIC_POSITION)){
             throw new UnsupportedOperationException( "This fragment should be provied bundle with relics!");
         }
-        RelicJsonWrapper relicsW = ( RelicJsonWrapper) getArguments().getSerializable( KEY_BUNDLE_RELICS);
-        int currentRelics = getArguments().getInt(  KEY_BUNDLE_RELIC_POSITION);
+        RelicJsonWrapper relicsW = ( RelicJsonWrapper) getArguments().getSerializable( BundleKeys.KEY_BUNDLE_RELICS_WRAPPER);
+        int currentRelics = getArguments().getInt(  BundleKeys.KEY_BUNDLE_RELIC_POSITION);
 
 
 
@@ -76,7 +75,7 @@ public class RelicsDetailsPagerFragment extends Fragment {
         public Fragment getItem(int position) {
             RelicDetailsFragment f = new RelicDetailsFragment();
             Bundle b = new Bundle();
-            b.putSerializable( MainActivity.FRAGMENT_BUNDLE_RELIC_JSON_KEY, mRelics.get( position));
+            b.putSerializable( BundleKeys.KEY_BUNDLE_SINGLE_RELIC_JSON, mRelics.get( position));
             f.setArguments( b );
 
             return f;

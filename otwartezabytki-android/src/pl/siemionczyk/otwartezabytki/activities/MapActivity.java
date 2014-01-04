@@ -11,6 +11,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import pl.siemionczyk.otwartezabytki.BundleKeys;
 import pl.siemionczyk.otwartezabytki.R;
 import pl.siemionczyk.otwartezabytki.rest.RelicJsonWrapper;
 import pl.siemionczyk.otwartezabytki.rest.relicjson.RelicJson;
@@ -20,7 +21,6 @@ import pl.siemionczyk.otwartezabytki.rest.relicjson.RelicJson;
  */
 public class MapActivity extends FragmentActivity {
 
-    public final static String KEY_BUNDLE_RELICS = "relicc bundle";
 
     GoogleMap map;
 
@@ -40,8 +40,8 @@ public class MapActivity extends FragmentActivity {
 
         Bundle b = getIntent().getExtras();
 
-        if ( b!= null && b.containsKey( KEY_BUNDLE_RELICS)){
-            RelicJsonWrapper relicsWrapper = (RelicJsonWrapper) b.getSerializable( KEY_BUNDLE_RELICS);
+        if ( b!= null && b.containsKey( BundleKeys.KEY_BUNDLE_RELICS_WRAPPER)){
+            RelicJsonWrapper relicsWrapper = (RelicJsonWrapper) b.getSerializable( BundleKeys.KEY_BUNDLE_RELICS_WRAPPER);
 
             if ( relicsWrapper.relics.size() > 0){
                 double latMin, latMax, longMin, longMax;

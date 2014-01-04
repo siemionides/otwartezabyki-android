@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import pl.siemionczyk.otwartezabytki.BundleKeys;
 import pl.siemionczyk.otwartezabytki.R;
 import pl.siemionczyk.otwartezabytki.activities.MainActivity;
 import pl.siemionczyk.otwartezabytki.rest.relicjson.RelicJson;
@@ -49,8 +50,8 @@ public class RelicDetailsFragment extends Fragment {
 
         //get RelicsJson from arguments
         Bundle b = getArguments();
-        if ( b != null && b.containsKey( MainActivity.FRAGMENT_BUNDLE_RELIC_JSON_KEY)){
-            fillViewsWithContent( (RelicJson) b.get( MainActivity.FRAGMENT_BUNDLE_RELIC_JSON_KEY));
+        if ( b != null && b.containsKey( BundleKeys.KEY_BUNDLE_SINGLE_RELIC_JSON)){
+            fillViewsWithContent( (RelicJson) b.get( BundleKeys.KEY_BUNDLE_SINGLE_RELIC_JSON));
         }
 
         return view;

@@ -45,8 +45,11 @@
         <activity
                 android:name=".activities.RelicDetailsActivity"
                 android:label="@string/app_name" >
+        </activity>
 
-
+        <activity
+            android:name=".activities.SearchResultRelicListActivity"
+            android:label="@string/app_name" >
         </activity>
 
 

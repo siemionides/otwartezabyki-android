@@ -17,6 +17,8 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import pl.siemionczyk.otwartezabytki.BundleKeys;
 import pl.siemionczyk.otwartezabytki.OtwarteZabytkiApp;
 import pl.siemionczyk.otwartezabytki.R;
 import pl.siemionczyk.otwartezabytki.activities.MainActivity;
@@ -36,10 +38,13 @@ import java.util.ArrayList;
 
 /**
  * Created by majkeliusz on 7/7/13.
+ * - Provides fragment for showing up relics list (when relicswrapper was found in bundle) OR
+ * - finds relics in the around and shows them!
+ *
  */
-public class RelicsAroundFragment extends Fragment {
+public class RelicsListFragment extends Fragment {
 
-    public final static String TAG = "RelicsAroundFragment";
+    public final static String TAG = "RelicsListFragment";
 
     private final static float RADIUS_OF_SEARCH = 3f; //in kilometers
 
@@ -86,16 +91,35 @@ public class RelicsAroundFragment extends Fragment {
                 RelicJson relic = adapt.getItem(position);
                 HelperToolkit.makeToast( getActivity(), relic.identification);
 
-                (( MainActivity) getActivity()).replaceToRelicDetailsFragment(
+                replaceToRelicDetailsFragment(
                         new RelicJsonWrapper(mAdapter.getItems()), position);
 
 
             }
         });
 
+        if ( getArguments() != null && getArguments().containsKey( BundleKeys.KEY_BUNDLE_RELICS_WRAPPER)){
+            //FROM DETAILED SEARCH
 
-        //get positionInfo
-        getLocationInfoAndUpdateRelics(view, RADIUS_OF_SEARCH);
+            //set title
+//            getActivity().setTitle();
+
+            mProgressBar.setVisibility( View.GONE);
+
+            //add them to adapter
+            RelicJsonWrapper rWrapper = ( RelicJsonWrapper) getArguments().get( BundleKeys.KEY_BUNDLE_RELICS_WRAPPER);
+
+            Location lLoc = getLastKnownLocation();
+            mAdapter = new RelicsAroundAdapter( getActivity(), R.layout.list_item_relic_around, rWrapper.relics, lLoc
+                     );
+
+            mAdapter.notifyDataSetChanged();
+            mListViewRelics.setAdapter( mAdapter);
+
+        } else {
+            //get positionInfo
+            getLocationInfoAndUpdateRelics(view, RADIUS_OF_SEARCH);
+        }
 
         return view;
     }
@@ -126,7 +150,7 @@ public class RelicsAroundFragment extends Fragment {
             wrapper.relics = mAdapter.getItems();
 
             Intent i = new Intent( getActivity(), MapActivity.class);
-            i.putExtra( MapActivity.KEY_BUNDLE_RELICS, wrapper);
+            i.putExtra(BundleKeys.KEY_BUNDLE_RELICS_WRAPPER, wrapper);
 
             startActivity(i);
 
@@ -139,6 +163,18 @@ public class RelicsAroundFragment extends Fragment {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    private Location getLastKnownLocation (){
+        LocationManager locationManager;
+        String svcName = Context.LOCATION_SERVICE;
+        locationManager = ( LocationManager) getActivity().getSystemService(svcName);
+
+        return locationManager.getLastKnownLocation( LocationManager.GPS_PROVIDER);
+
+
+    }
+
 
     private void getLocationInfoAndUpdateRelics ( View rootView, final float radius) {
         LocationManager locationManager;
@@ -188,19 +224,7 @@ public class RelicsAroundFragment extends Fragment {
     }
 
     private void fillListView( ArrayList<RelicJson> relics, Location userLocation){
-
-//        ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>(  );
-
-//        //stupind conversion
-//        for ( RelicJson r : relics){
-//            HashMap<String, String> map = new HashMap<String, String>(  );
-//            map.put( "name", r.identification );
-//            map.put( "place", r.place_name );
-//            list.add( map );
-//        }
-
         mAdapter = new RelicsAroundAdapter( getActivity(), R.layout.list_item_relic_around, relics, userLocation );
-
         mListViewRelics.setAdapter( mAdapter );
     }
 
@@ -242,5 +266,21 @@ public class RelicsAroundFragment extends Fragment {
             }
         };
         mClient.getRelicsAround((float) location.getLatitude(), (float) location.getLongitude(), radius, true, cb);
+    }
+
+    public void replaceToRelicDetailsFragment( RelicJsonWrapper relicWrapper, int currentItem){
+        RelicsDetailsPagerFragment fragment = new RelicsDetailsPagerFragment(); //TODO, find one in stack
+
+        Bundle b = new Bundle();
+        b.putSerializable( BundleKeys.KEY_BUNDLE_RELICS_WRAPPER, relicWrapper);
+        b.putSerializable( BundleKeys.KEY_BUNDLE_RELIC_POSITION, currentItem);
+
+        fragment.setArguments( b);
+
+        getFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+                .replace(R.id.content_frame, fragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

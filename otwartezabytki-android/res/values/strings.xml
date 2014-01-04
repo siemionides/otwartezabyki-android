@@ -32,6 +32,12 @@
         <item>3 km</item>
     </string-array>
 
+    <string name="has_photos">tylko ze zdjęciami</string>
+
+
+
+
+
 
     <!-- dialogs / progress bars / etc-->
     <string name="progres_bar_loading_relics">Wyszukiwanie listy zabytków w okolicy</string>

@@ -90,7 +90,7 @@
                 android:id="@+id/tv_date_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Data powstania 2"
+                android:text="Data powstania"
                 android:layout_marginTop="@dimen/details_title_margin"
                 style="@style/font_section_header"
 
@@ -105,6 +105,42 @@
 
                 />
     </LinearLayout>
+
+
+
+
+        <!-- Date of beginnig -->
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/layout_date_beginning"
+            android:layout_marginTop="@dimen/details_title_margin"
+            >
+
+            <View
+                android:background="@color/gray_horizontal_ruler_DN"
+                android:layout_height="1dp"
+                android:layout_width="fill_parent"/>
+
+            <TextView
+                android:id="@+id/tv_date_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zdjęcia"
+                android:layout_marginTop="@dimen/details_title_margin"
+                style="@style/font_section_header"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_date_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/details_content_margin"
+                android:text="1818 - 1830"
+
+                />
+        </LinearLayout>
 
 
 

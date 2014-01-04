@@ -10,7 +10,7 @@ import dagger.Provides;
 import pl.siemionczyk.otwartezabytki.activities.MainActivity;
 import pl.siemionczyk.otwartezabytki.event.EventBus;
 import pl.siemionczyk.otwartezabytki.event.OttoEventBus;
-import pl.siemionczyk.otwartezabytki.fragment.RelicsAroundFragment;
+import pl.siemionczyk.otwartezabytki.fragment.RelicsListFragment;
 import pl.siemionczyk.otwartezabytki.fragment.SearchRelicFragment;
 //import pl.siemionczyk.otwartezabytki.service.TestService;
 
@@ -34,7 +34,7 @@ import javax.inject.Singleton;
             //MeetupsMapFragment.class,
             //MeetupListFragment.class
             //Fragments
-            RelicsAroundFragment.class,
+            RelicsListFragment.class,
             SearchRelicFragment.class
         })
         //staticInjections = {ParseInitializer.class})

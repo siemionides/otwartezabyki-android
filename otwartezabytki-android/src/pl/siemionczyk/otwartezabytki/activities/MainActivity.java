@@ -16,6 +16,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.squareup.otto.Subscribe;
+
+import pl.siemionczyk.otwartezabytki.BundleKeys;
 import pl.siemionczyk.otwartezabytki.OtwarteZabytkiApp;
 import pl.siemionczyk.otwartezabytki.R;
 import pl.siemionczyk.otwartezabytki.event.EventBus;
@@ -39,7 +41,6 @@ public class MainActivity extends FragmentActivity {
 	
 	private final static String TAG = "MainActivity";
 
-    public static final String FRAGMENT_BUNDLE_RELIC_JSON_KEY = "relicsjsonkey";
 
     DrawerLayout mDrawerLayout;
 
@@ -217,7 +218,7 @@ public class MainActivity extends FragmentActivity {
 
         Fragment f = null;
 
-        if ( textButton.equals( getString( R.string.main_menu_w_okolicy ) )) f = new RelicsAroundFragment();
+        if ( textButton.equals( getString( R.string.main_menu_w_okolicy ) )) f = new RelicsListFragment();
         else if (textButton.equals( getString( R.string.main_menu_wyszukaj ) )){
             f = new SearchRelicFragment();
             bus.post( new TestEvent() );
@@ -269,20 +270,6 @@ public class MainActivity extends FragmentActivity {
     }
 
 
-    public void replaceToRelicDetailsFragment( RelicJsonWrapper relicWrapper, int currentItem){
-        RelicsDetailsPagerFragment fragment = new RelicsDetailsPagerFragment(); //TODO, find one in stack
 
-        Bundle b = new Bundle();
-        b.putSerializable( RelicsDetailsPagerFragment.KEY_BUNDLE_RELICS, relicWrapper);
-        b.putSerializable( RelicsDetailsPagerFragment.KEY_BUNDLE_RELIC_POSITION, currentItem);
-
-        fragment.setArguments( b);
-
-        getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
-                .replace(R.id.content_frame, fragment)
-                .addToBackStack(null)
-                .commit();
-    }
 
 }
