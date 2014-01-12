@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.androidquery.AQuery;
 
+import pl.siemionczyk.otwartezabytki.helper.MyLog;
 import pl.siemionczyk.otwartezabytki.rest.OtwarteZabytkiClient;
 
 /**
@@ -16,6 +17,7 @@ import pl.siemionczyk.otwartezabytki.rest.OtwarteZabytkiClient;
  */
 public class FullScreenPhotoAdapter extends PagerAdapter {
 
+    private static final String TAG = "FullScreenPhotoAdapter";
     Context mContext;
 
     int mPagesNr;
@@ -40,6 +42,8 @@ public class FullScreenPhotoAdapter extends PagerAdapter {
         ImageView imageVIew = new ImageView( mContext );
 
         aq.id( imageVIew).image( OtwarteZabytkiClient.HOST + photoUrl);
+
+        MyLog.i( TAG, "position:" + position + ", photo url: " +  OtwarteZabytkiClient.HOST + photoUrl );
 
         collection.addView( imageVIew, 0 );
 

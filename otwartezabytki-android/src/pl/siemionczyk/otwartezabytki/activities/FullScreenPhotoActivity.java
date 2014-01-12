@@ -22,10 +22,6 @@ public class FullScreenPhotoActivity extends Activity {
     public final static String TAG = "FullScreenPhotoActivity";
 
     ViewPager viewPager;
-    TextView tvMessage;
-    RelativeLayout layoutUnderstand;
-
-    private final int PAGES_NR = 3;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
@@ -33,13 +29,20 @@ public class FullScreenPhotoActivity extends Activity {
         setContentView( R.layout._at_fullscreen_gallery );
 
 
+        String[] photosUrls;
+        int nrOfCurrentPhoto = -1;
+
         //from bundle get nr of pictures
         //get urls to photos
         Bundle b = getIntent().getExtras();
 
-        if ( b != null && b.containsKey(BundleKeys.KEY_BUNDLE_PHOTOS_URLS_ARRAY) && b.containsKey( BundleKeys.KEY_BUNDLE_PHOTOS_NR))
-
-        getIntent().getStringArrayExtra( Bu)
+        if (b != null && b.containsKey(BundleKeys.KEY_BUNDLE_PHOTOS_URLS_ARRAY)
+                && b.containsKey(BundleKeys.KEY_BUNDLE_PHOTOS_NR)) {
+            photosUrls = getIntent().getStringArrayExtra(BundleKeys.KEY_BUNDLE_PHOTOS_URLS_ARRAY);
+            nrOfCurrentPhoto = getIntent().getIntExtra(BundleKeys.KEY_BUNDLE_PHOTOS_NR, -1);
+        } else {
+            throw new UnsupportedOperationException("should provide array of urls + nr of current photo;");
+        }
 
 
         //inject views
@@ -55,72 +58,46 @@ public class FullScreenPhotoActivity extends Activity {
 
 
         FullScreenPhotoAdapter mPagerExploreAdapter;
-        mPagerExploreAdapter = new FullScreenPhotoAdapter( this, 3,
-                new int[]{
-                        R.drawable.tutorial_s_przegladaj1,
-                        R.drawable.tutorial_s_przegladaj2,
-                        R.drawable.tutorial_s_przegladaj3
-                } );
+        mPagerExploreAdapter = new FullScreenPhotoAdapter( this, photosUrls.length, photosUrls);
 
         viewPager.setAdapter( mPagerExploreAdapter );
-        viewPager.setOffscreenPageLimit( 0 );
-        viewPager.setCurrentItem( 0 );
-
-
-        configureIndicator( indicator );
-        configureIndicatorOnPageChangeListener( indicator, tvMessage, viewPager,
-                getMessagesForPages(), PAGES_NR, layoutUnderstand );
-
-        //configure indiator
-        indicator.setViewPager(viewPager);
-
-
-        //configure message "understand" to remain during on conf changes
-        if ( savedInstanceState != null){
-
-            int bundle_page_id = savedInstanceState.getInt( KEY_PAGE_NR );
-            MyLog.i( TAG, "bundle not null, " + savedInstanceState.getInt( KEY_PAGE_NR ) );
-            if ( bundle_page_id == PAGES_NR - 1){
-                ViewHelper.setAlpha(layoutUnderstand,  1 );
-            }
-        } else {
-            MyLog.i( TAG, "bundle is null!" );
-        }
+        viewPager.setOffscreenPageLimit( 1 );
+//        viewPager.setCurrentItem( nrOfCurrentPhoto );
     }
 
-    private void setButtonListeners () {
-        layoutUnderstand.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick ( View v ) {
-                onUnderStandClick();
-            }
-        } );
-    }
+//    private void setButtonListeners () {
+//        layoutUnderstand.setOnClickListener( new View.OnClickListener() {
+//            @Override
+//            public void onClick ( View v ) {
+//                onUnderStandClick();
+//            }
+//        } );
+//    }
 
-    public void onUnderStandClick(){
-        MyLog.i( TAG, "clicked - method only:" + viewPager.getCurrentItem() + " , " + (PAGES_NR-1));
-        if ( viewPager.getCurrentItem() == PAGES_NR - 1){
+//    public void onUnderStandClick(){
+//        MyLog.i( TAG, "clicked - method only:" + viewPager.getCurrentItem() + " , " + (PAGES_NR-1));
+//        if ( viewPager.getCurrentItem() == PAGES_NR - 1){
+//
+//            finish();
+//            Toast.makeText( this, "clicked", Toast.LENGTH_LONG );
+//        }
+//    }
 
-            finish();
-            Toast.makeText( this, "clicked", Toast.LENGTH_LONG );
-        }
-    }
-
-    private String[] getMessagesForPages( ){
-
-        String[] messages = new String[] {
-                getString( R.string.tutorial_explore_1 ),
-                getString( R.string.tutorial_explore_2 ),
-                getString( R.string.tutorial_explore_3 )
-        };
-
-        return messages;
-    }
+//    private String[] getMessagesForPages( ){
+//
+//        String[] messages = new String[] {
+//                getString( R.string.tutorial_explore_1 ),
+//                getString( R.string.tutorial_explore_2 ),
+//                getString( R.string.tutorial_explore_3 )
+//        };
+//
+//        return messages;
+//    }
 
     @Override
     protected void onSaveInstanceState ( Bundle outState ) {
         super.onSaveInstanceState( outState );
 
-        outState.putInt( KEY_PAGE_NR, viewPager.getCurrentItem() );
+//        outState.putInt( KEY_PAGE_NR, viewPager.getCurrentItem() );
     }
 }

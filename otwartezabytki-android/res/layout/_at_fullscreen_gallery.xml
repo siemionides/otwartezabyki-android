@@ -6,21 +6,25 @@
     android:layout_height="fill_parent"
 
     >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="74"
-        android:clickable="true"
-        >
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:id="@+id/tutorial_pager"
+        android:layout_centerInParent="true"
+        />
 
 
-        <android.support.v4.view.ViewPager
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:id="@+id/tutorial_pager"
-            android:layout_centerInParent="true"
-            />
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="74"-->
+        <!--android:clickable="true"-->
+        <!-->-->
+
+
+
 
   <!--      <RelativeLayout
             android:layout_width="wrap_content"
@@ -58,11 +62,10 @@
         </RelativeLayout>-->
 
 
-    </RelativeLayout>
 
 
 
-    <com.dzialanie.graphics.fonts.TextViewLightFont
+  <!--  <com.dzialanie.graphics.fonts.TextViewLightFont
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tutorial_explore_message"
@@ -72,7 +75,7 @@
         android:text="Choroba1 CChoroba1 CChoroba1 CChoroba1 CChoroba1 CChoroba1 C  "
         style="@style/textstyle_smaller_font"
         android:layout_alignParentBottom="true"
-        />
+        />-->
 
 
 </RelativeLayout>

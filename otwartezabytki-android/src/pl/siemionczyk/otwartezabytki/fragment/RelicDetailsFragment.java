@@ -1,5 +1,6 @@
 package pl.siemionczyk.otwartezabytki.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
@@ -14,6 +15,7 @@ import com.androidquery.AQuery;
 
 import pl.siemionczyk.otwartezabytki.BundleKeys;
 import pl.siemionczyk.otwartezabytki.R;
+import pl.siemionczyk.otwartezabytki.activities.FullScreenPhotoActivity;
 import pl.siemionczyk.otwartezabytki.activities.MainActivity;
 import pl.siemionczyk.otwartezabytki.helper.HelperToolkit;
 import pl.siemionczyk.otwartezabytki.helper.MyLog;
@@ -76,7 +78,7 @@ public class RelicDetailsFragment extends Fragment {
         return view;
     }
 
-    private void fillViewsWithContent ( RelicJson relic, AQuery aq){
+    private void fillViewsWithContent ( final RelicJson relic, AQuery aq){
         tvRelicName.setText( relic.identification);
 
         tvLocation.setText( relic.place_name);
@@ -128,6 +130,12 @@ public class RelicDetailsFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     HelperToolkit.makeToast( getActivity(), "relic photo clicked:" + pjF.file.midi.url);
+
+                    //create String[] with urls to maxi photos and get it
+                    String[] urls = relic.getUrlsToMaxiPhotos();
+                    int nrPhoto = relic.photos.indexOf( pjF);
+
+                    onPhotoThumbnailClicked( nrPhoto, urls );
                 }
             });
 
@@ -165,10 +173,18 @@ public class RelicDetailsFragment extends Fragment {
 
 
         tvRelicRegisterNr.setText( relic.register_number);
+    }
 
 
+    private void onPhotoThumbnailClicked( int nrPhoto, String[] urls){
 
+        Bundle b = new Bundle();
+        b.putInt( BundleKeys.KEY_BUNDLE_PHOTOS_NR, nrPhoto);
+        b.putStringArray( BundleKeys.KEY_BUNDLE_PHOTOS_URLS_ARRAY, urls);
 
+        Intent i = new Intent( getActivity(), FullScreenPhotoActivity.class);
+        i.putExtras( b);
 
+        startActivity( i);
     }
 }

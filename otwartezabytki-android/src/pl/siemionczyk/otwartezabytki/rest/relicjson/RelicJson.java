@@ -44,6 +44,19 @@ public class RelicJson implements Serializable {
 //        return returnStr;
 	}
 
+
+    public String[] getUrlsToMaxiPhotos(){
+        String[] urls = new String[ photos.size()];
+
+        int i = 0;
+        for ( PhotoJson pJ : photos){
+            urls[i++] = pJ.file.full.url;
+        }
+
+        return urls;
+    }
+
+
     public static String removeDiacriticalMarks(String string) {
         return Normalizer.normalize(string, Normalizer.Form.NFD)
                 .replaceAll("[^\\p{ż}]", "");

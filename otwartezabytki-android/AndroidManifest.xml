@@ -67,6 +67,13 @@
 
         </activity>
 
+        <activity android:name=".activities.FullScreenPhotoActivity"
+
+            >
+
+
+        </activity>
+
 
 
 
