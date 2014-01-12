@@ -34,14 +34,13 @@ public class RelicDetailsFragment extends Fragment {
     TextView tvLocation;
     TextView tvDating;
     TextView tvDescription;
-    TextView tvLegends;
     TextView tvDates;
     TextView tvCategories;
     TextView tvTags;
     TextView tvRelicRegisterNr;
 
     LinearLayout photosLayout;
-//    ImageView ivMainPhoto;
+    LinearLayout triviaLayout;
 
 
 
@@ -58,12 +57,12 @@ public class RelicDetailsFragment extends Fragment {
         tvLocation = ( TextView) view.findViewById( R.id.tv_location_content);
         tvDating = ( TextView) view.findViewById( R.id.tv_date_content);
         tvDescription = ( TextView) view.findViewById( R.id.tv_desc_content);
-        tvLegends = ( TextView) view.findViewById( R.id.tv_legends_content);
         tvDates = ( TextView) view.findViewById( R.id.tv_dates_content);
         tvCategories = ( TextView) view.findViewById( R.id.tv_categories_content);
         tvTags = ( TextView) view.findViewById( R.id.tv_tags_content);
         tvRelicRegisterNr = ( TextView) view.findViewById( R.id.tv_register_content);
         photosLayout = ( LinearLayout) view.findViewById( R.id.layout_photos_gallery);
+        triviaLayout = ( LinearLayout) view.findViewById( R.id.trivia_layout);
 //        ivMainPhoto = (ImageView) view.findViewById( R.id.main_photo);
 
         //get RelicsJson from arguments
@@ -88,12 +87,40 @@ public class RelicDetailsFragment extends Fragment {
         //insert description
         tvDescription.setText(Html.fromHtml(relic.description));
 
+
+
+
         //insert trivia  / interesting facts / legends
-        String legendsTitles = "";
         for ( RelicJson.EntryJson entry : relic.entries){
-            legendsTitles += entry.title + " \n";
+
+            TextView tvTrivia = new TextView( getActivity());
+            LinearLayout.LayoutParams params =
+                    new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.setMargins( 15, 0, 15, 0 );
+
+            tvTrivia.setLayoutParams( params);
+
+            //set text
+            tvTrivia.setText( entry.title);
+
+            //set color
+            tvTrivia.setTextColor( getResources().getColor(android.R.color.holo_blue_light));
+
+            final RelicJson.EntryJson fEntry = entry;
+
+            //add onclickListener
+            tvTrivia.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    onTriviaTitleClickd( fEntry.title, fEntry.body);
+
+                }
+            });
+
+            //add to layout
+            triviaLayout.addView( tvTrivia);
         }
-        tvLegends.setText( legendsTitles);
 
 
         //insert dates
@@ -105,9 +132,6 @@ public class RelicDetailsFragment extends Fragment {
         if ( !dates.equals("")) dates = dates.substring(0, dates.length()-5);   //this cut the last <br/>
 
         tvDates.setText( Html.fromHtml( dates));
-
-
-
 
 
         //insert photo in there
@@ -173,6 +197,23 @@ public class RelicDetailsFragment extends Fragment {
 
 
         tvRelicRegisterNr.setText( relic.register_number);
+    }
+
+    /**
+     * Starts dialog with title and body
+     * @param title
+     * @param body
+     */
+    private void onTriviaTitleClickd(String title, String body) {
+        TriviaDialog f = new TriviaDialog();
+
+        Bundle b = new Bundle();
+        b.putString( BundleKeys.KEY_BUNDLE_TRIVIA_TITLE, title);
+        b.putString( BundleKeys.KEY_BUNDLE_TRIVIA_CONTENT, body);
+        f.setArguments( b);
+
+        f.show( getFragmentManager(), "");
+
     }
 
 

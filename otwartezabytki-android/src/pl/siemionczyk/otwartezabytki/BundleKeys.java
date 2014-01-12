@@ -15,6 +15,12 @@ public class BundleKeys {
 
     public static final String KEY_BUNDLE_PHOTOS_NR= "Photos_number";    //this is for single relic- RelicJson
 
+    public static final String KEY_BUNDLE_TRIVIA_TITLE= "trivia_title";    //this is for single relic- RelicJson
+
+    public static final String KEY_BUNDLE_TRIVIA_CONTENT= "trivia_content";    //this is for single relic- RelicJson
+
+
+
 
 
 }

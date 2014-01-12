@@ -232,14 +232,16 @@
 
                 />
 
-        <TextView
-                android:id="@+id/tv_legends_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/details_content_margin"
-                android:text="Legenda nr 1\nLegenda nr 2\nLegenda nr 3\n"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/trivia_layout"
+            />
 
-                />
+
+
+
     </LinearLayout>
 
 
