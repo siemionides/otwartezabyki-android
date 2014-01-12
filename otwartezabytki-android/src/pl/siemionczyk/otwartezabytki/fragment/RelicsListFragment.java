@@ -14,14 +14,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Filter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import pl.siemionczyk.otwartezabytki.BundleKeys;
 import pl.siemionczyk.otwartezabytki.OtwarteZabytkiApp;
 import pl.siemionczyk.otwartezabytki.R;
-import pl.siemionczyk.otwartezabytki.activities.MainActivity;
 import pl.siemionczyk.otwartezabytki.activities.MapActivity;
 import pl.siemionczyk.otwartezabytki.adapters.RelicsAroundAdapter;
 import pl.siemionczyk.otwartezabytki.helper.HelperToolkit;
@@ -42,7 +43,7 @@ import java.util.ArrayList;
  * - finds relics in the around and shows them!
  *
  */
-public class RelicsListFragment extends Fragment {
+public class RelicsListFragment extends Fragment implements SearchView.OnQueryTextListener, SearchView.OnCloseListener {
 
     public final static String TAG = "RelicsListFragment";
 
@@ -60,6 +61,10 @@ public class RelicsListFragment extends Fragment {
 
     private Location mLastFoundLocation;
 
+//    private SearchView mSearchView;
+
+
+
     @Inject
     OtwarteZabytkiClient mClient;
 
@@ -74,6 +79,9 @@ public class RelicsListFragment extends Fragment {
 
         //inject dagger
         ((OtwarteZabytkiApp) getActivity().getApplication()).inject(this);
+
+        //set title
+        getActivity().setTitle( R.string.main_menu_w_okolicy);
 
         //inject views
         mListViewRelics = ( ListView ) view.findViewById( R.id.list_view_relics );
@@ -113,6 +121,7 @@ public class RelicsListFragment extends Fragment {
             mAdapter = new RelicsAroundAdapter( getActivity(), R.layout.list_item_relic_around, rWrapper.relics, lLoc
                      );
 
+
             mAdapter.notifyDataSetChanged();
             mListViewRelics.setAdapter( mAdapter);
 
@@ -136,6 +145,12 @@ public class RelicsListFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
         inflater.inflate(R.menu.menu_relics_around, menu);
+
+        SearchView mSearchView= (SearchView) menu.findItem(R.id.action_search).getActionView();
+
+
+        mSearchView.setOnQueryTextListener(this);
+        mSearchView.setOnCloseListener(this);
     }
 
     @Override
@@ -162,6 +177,33 @@ public class RelicsListFragment extends Fragment {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onQueryTextChange(String query) {
+        if (mAdapter != null) {
+
+            MyLog.i( TAG, "filter for:" + query);
+            mAdapter.getFilter().filter(query, new Filter.FilterListener() {
+                @Override
+                public void onFilterComplete(int count) {
+                    MyLog.i( TAG, "filter count:" + count);
+                }
+            });
+
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String arg0) {
+        return true;
+    }
+
+    @Override
+    public boolean onClose() {
+        mAdapter.getFilter().filter("");
+        return true;
     }
 
 
@@ -242,7 +284,7 @@ public class RelicsListFragment extends Fragment {
                 MyLog.i( TAG, "success on downloading relics:" + relicJsonWrapper.relics.size() );
 
                 for (RelicJson r: relicJsonWrapper.relics){
-                    MyLog.i(TAG, "long:" + r.longitude + ", lat:" + r.latitude);
+                    MyLog.i(TAG, "name: " + r.identification +" long:" + r.longitude + ", lat:" + r.latitude + " nrPhotos: " + r.photos.size() );
                 }
 
                 //hide progressBar

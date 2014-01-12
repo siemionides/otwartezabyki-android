@@ -6,11 +6,20 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.androidquery.AQuery;
 
 import pl.siemionczyk.otwartezabytki.BundleKeys;
 import pl.siemionczyk.otwartezabytki.R;
 import pl.siemionczyk.otwartezabytki.activities.MainActivity;
+import pl.siemionczyk.otwartezabytki.helper.HelperToolkit;
+import pl.siemionczyk.otwartezabytki.helper.MyLog;
+import pl.siemionczyk.otwartezabytki.rest.OtwarteZabytkiApi;
+import pl.siemionczyk.otwartezabytki.rest.OtwarteZabytkiClient;
+import pl.siemionczyk.otwartezabytki.rest.relicjson.PhotoJson;
 import pl.siemionczyk.otwartezabytki.rest.relicjson.RelicJson;
 
 /**
@@ -18,6 +27,7 @@ import pl.siemionczyk.otwartezabytki.rest.relicjson.RelicJson;
  */
 public class RelicDetailsFragment extends Fragment {
 
+    private static final String TAG = "RelicDetailsFragment";
     TextView tvRelicName;
     TextView tvLocation;
     TextView tvDating;
@@ -27,6 +37,10 @@ public class RelicDetailsFragment extends Fragment {
     TextView tvCategories;
     TextView tvTags;
     TextView tvRelicRegisterNr;
+
+    LinearLayout photosLayout;
+//    ImageView ivMainPhoto;
+
 
 
     @Override
@@ -47,17 +61,22 @@ public class RelicDetailsFragment extends Fragment {
         tvCategories = ( TextView) view.findViewById( R.id.tv_categories_content);
         tvTags = ( TextView) view.findViewById( R.id.tv_tags_content);
         tvRelicRegisterNr = ( TextView) view.findViewById( R.id.tv_register_content);
+        photosLayout = ( LinearLayout) view.findViewById( R.id.layout_photos_gallery);
+//        ivMainPhoto = (ImageView) view.findViewById( R.id.main_photo);
 
         //get RelicsJson from arguments
         Bundle b = getArguments();
         if ( b != null && b.containsKey( BundleKeys.KEY_BUNDLE_SINGLE_RELIC_JSON)){
-            fillViewsWithContent( (RelicJson) b.get( BundleKeys.KEY_BUNDLE_SINGLE_RELIC_JSON));
+            AQuery aq = new AQuery( getActivity(), view);
+            fillViewsWithContent( (RelicJson) b.get( BundleKeys.KEY_BUNDLE_SINGLE_RELIC_JSON), aq);
         }
+
+
 
         return view;
     }
 
-    private void fillViewsWithContent ( RelicJson relic){
+    private void fillViewsWithContent ( RelicJson relic, AQuery aq){
         tvRelicName.setText( relic.identification);
 
         tvLocation.setText( relic.place_name);
@@ -85,6 +104,42 @@ public class RelicDetailsFragment extends Fragment {
 
         tvDates.setText( Html.fromHtml( dates));
 
+
+
+
+
+        //insert photo in there
+        int id = 54335323;
+        for ( PhotoJson pJ : relic.photos){
+
+            ImageView iv = new ImageView( getActivity());
+            LinearLayout.LayoutParams params =
+                    new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.setMargins( 15, 0, 15, 0 );
+
+
+            iv.setLayoutParams( params);
+            iv.setId(id );
+
+
+            //set on click listener
+            final PhotoJson pjF = pJ;
+            iv.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    HelperToolkit.makeToast( getActivity(), "relic photo clicked:" + pjF.file.midi.url);
+                }
+            });
+
+
+            photosLayout.addView( iv);
+
+            aq.id( id).image( OtwarteZabytkiClient.HOST + pJ.file.midi.url);
+
+            MyLog.i( TAG, "trying to add photo:" + pJ.file.midi.url);
+
+            id++;
+        }
 
 
         //insert categories

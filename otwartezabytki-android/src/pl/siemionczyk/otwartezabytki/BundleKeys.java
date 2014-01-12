@@ -11,6 +11,10 @@ public class BundleKeys {
 
     public static final String KEY_BUNDLE_SINGLE_RELIC_JSON = "relicsjsonkey";    //this is for single relic- RelicJson
 
+    public static final String KEY_BUNDLE_PHOTOS_URLS_ARRAY = "photos_urls_array";    //this is for single relic- RelicJson
+
+    public static final String KEY_BUNDLE_PHOTOS_NR= "Photos_number";    //this is for single relic- RelicJson
+
 
 
 }

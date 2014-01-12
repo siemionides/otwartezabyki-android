@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.TextView;
 import pl.siemionczyk.otwartezabytki.R;
 import pl.siemionczyk.otwartezabytki.helper.MyLog;
@@ -21,16 +22,19 @@ public class RelicsAroundAdapter extends ArrayAdapter<RelicJson> {
 
     private static final String TAG = "RelicsAroundAdapter";
     private final Context mContext;
-    private final ArrayList<RelicJson> mValues;
+    private ArrayList<RelicJson> mValues, mFilterBaseData;
     private final int mResourceId;
     private Location mUserLocation;
+
+    private Object mLock = new Object();
+
 
     public RelicsAroundAdapter ( Context context, int resource, ArrayList<RelicJson> objects,
                                  Location userLocation) {
         super( context, resource, objects );
 
         this.mContext = context;
-        this.mValues = objects;
+        this.mValues = mFilterBaseData =objects;
         this.mResourceId = resource;
         this.mUserLocation = userLocation;
     }
@@ -41,7 +45,6 @@ public class RelicsAroundAdapter extends ArrayAdapter<RelicJson> {
         LayoutInflater inflater = ( LayoutInflater ) mContext
                 .getSystemService( Context.LAYOUT_INFLATER_SERVICE );
         View rowView = inflater.inflate( this.mResourceId, parent, false );
-
 
         RelicJson ob = mValues.get( position );
 
@@ -66,7 +69,40 @@ public class RelicsAroundAdapter extends ArrayAdapter<RelicJson> {
 
     }
 
+    @Override
+    public int getCount() {
+        return mValues.size();
+    }
+
     public ArrayList<RelicJson> getItems(){
         return this.mValues;
+    }
+
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                mValues = (ArrayList<RelicJson>) results.values;
+                RelicsAroundAdapter.this.notifyDataSetChanged();
+            }
+
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                synchronized (mLock) {
+
+                    List<RelicJson> filteredList = new ArrayList<RelicJson>();
+                    for (RelicJson  rj : mFilterBaseData) {
+                        if (rj.identification.toLowerCase().contains(constraint.toString().toLowerCase()))
+                            filteredList.add(rj);
+                    }
+                    FilterResults results = new FilterResults();
+                    results.values = filteredList;
+                    return results;
+                }
+            }
+        };
     }
 }

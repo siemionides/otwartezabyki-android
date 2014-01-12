@@ -15,8 +15,11 @@ import javax.inject.Singleton;
 @Singleton
 public class OtwarteZabytkiClient {
 
-
     private OtwarteZabytkiApi api;
+
+    public static final String HOST = "http://otwartezabytki.pl";
+
+
 
     @Inject
     public OtwarteZabytkiClient(){

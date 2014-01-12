@@ -1,11 +1,15 @@
 package pl.siemionczyk.otwartezabytki.rest.relicjson;
 
 import java.io.Serializable;
+import java.text.Normalizer;
 import java.util.ArrayList;
+
+import pl.siemionczyk.otwartezabytki.helper.MyLog;
 
 public class RelicJson implements Serializable {
 
-	public int id;
+    private static final String TAG = "RelicJson";
+    public int id;
 	public String dating_of_obj;
 	public String identification;
 	public String description;
@@ -27,19 +31,30 @@ public class RelicJson implements Serializable {
 
     public ArrayList<PhotoJson> photos;
 
+    /** Keeps main photo in there! */
+    public PhotoJson main_photo;
 
-
-	
 	@Override
 	public String toString() {
 		return "dating: " + dating_of_obj + ", name: " + identification + " place:" + place_name + " description:" + description;
+//        String returnStr = (identification);
+//        MyLog.i( TAG,  returnStr);
+
+
+//        return returnStr;
 	}
+
+    public static String removeDiacriticalMarks(String string) {
+        return Normalizer.normalize(string, Normalizer.Form.NFD)
+                .replaceAll("[^\\p{ż}]", "");
+    }
 
 
     public static class EntryJson implements Serializable {
         public String title;
         public String body;
     }
+
 
     /** For events : dates + names*/
     public static class EventJson implements Serializable {

@@ -43,4 +43,9 @@
     <string name="progres_bar_loading_relics">Wyszukiwanie listy zabytków w okolicy</string>
 
 
+    <!--titles of action bars-->
+    <string name="title_map_of_list">Mapa listy zabytków</string>
+    <string name="title_single_relic_details">Pojedynczy zabytek</string>
+
+
 </resources>

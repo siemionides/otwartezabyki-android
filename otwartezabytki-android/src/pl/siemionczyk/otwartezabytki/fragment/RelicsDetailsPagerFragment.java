@@ -1,11 +1,15 @@
 package pl.siemionczyk.otwartezabytki.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,6 +18,8 @@ import java.util.ArrayList;
 import pl.siemionczyk.otwartezabytki.BundleKeys;
 import pl.siemionczyk.otwartezabytki.R;
 import pl.siemionczyk.otwartezabytki.activities.MainActivity;
+import pl.siemionczyk.otwartezabytki.activities.MapActivity;
+import pl.siemionczyk.otwartezabytki.helper.HelperToolkit;
 import pl.siemionczyk.otwartezabytki.rest.RelicJsonWrapper;
 import pl.siemionczyk.otwartezabytki.rest.relicjson.RelicJson;
 
@@ -28,6 +34,13 @@ public class RelicsDetailsPagerFragment extends Fragment {
 
     ScreenSlidePagerAdapter mPagerAdapter;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setHasOptionsMenu(true);
+
+    }
 
 
     @Override
@@ -52,7 +65,39 @@ public class RelicsDetailsPagerFragment extends Fragment {
 
         mPager.setCurrentItem( currentRelics);
 
+        //set activity title
+        getActivity().setTitle( R.string.title_single_relic_details);
+
         return rootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        inflater.inflate(R.menu.menu_relic_details, menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if ( item.getItemId() == R.id.action_map){
+
+
+            //show just a single relic map activity
+            int i = mPager.getCurrentItem();
+            RelicJson relic = mPagerAdapter.getRelics().get( i);
+
+            Intent intent = new Intent( getActivity(), MapActivity.class);
+            intent.putExtra(BundleKeys.KEY_BUNDLE_SINGLE_RELIC_JSON, relic);
+
+            startActivity( intent);
+
+            return true;
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -84,6 +129,9 @@ public class RelicsDetailsPagerFragment extends Fragment {
         @Override
         public int getCount() {
             return mRelics.size();
+        }
+         public ArrayList<RelicJson> getRelics(){
+            return this.mRelics;
         }
     }
 

@@ -78,8 +78,8 @@ public class MainActivity extends FragmentActivity {
         configureLeftMenu();
 
         //by deafult open 0
-//        selectItem( 0, getResources().getString( R.string.main_menu_w_okolicy ));
-        selectItem( 2, getResources().getString( R.string.main_menu_wyszukaj ));
+        selectItem( 0, getResources().getString( R.string.main_menu_w_okolicy ));
+//        selectItem( 2, getResources().getString( R.string.main_menu_wyszukaj ));
 
 	}
 
@@ -218,22 +218,22 @@ public class MainActivity extends FragmentActivity {
 
         Fragment f = null;
 
+        //0 - zaybtki w okolicy
         if ( textButton.equals( getString( R.string.main_menu_w_okolicy ) )) f = new RelicsListFragment();
+
+       //1 - main menu - wyszukaj
         else if (textButton.equals( getString( R.string.main_menu_wyszukaj ) )){
             f = new SearchRelicFragment();
-            bus.post( new TestEvent() );
-        }
-        else if (textButton.equals( getString( R.string.main_menu_wyszukaj ) )){
-            // 2 - SEARCH
-            f = new SearchRelicFragment();
+            bus.post(new TestEvent());
         }
 
-        else if (textButton.equals( getString( R.string.main_menu_dodaj ) )) HelperToolkit.makeToast( this, "Adding relics not implemented yet");
+        //2 - 
+       else if (textButton.equals( getString( R.string.main_menu_dodaj ) )) HelperToolkit.makeToast( this, "Adding relics not implemented yet");
 
 
         else if (textButton.equals( getString( R.string.main_menu_favourites ) )){
             //FAVOURITES
-            HelperToolkit.makeToast( this, "Favourites are not implemented yet");
+            HelperToolkit.makeToast(this, "Favourites are not implemented yet");
         }
 
         else if (textButton.equals( getString( R.string.main_menu_map ) )){
@@ -249,7 +249,7 @@ public class MainActivity extends FragmentActivity {
             ToServiceEvent event = new ToServiceEvent();
             event.value = 3;
 
-            bus.post( event );
+            bus.post(event);
         }
 
         else if (textButton.equals( getString( R.string.main_menu_about ) )) f = new AboutFragment();

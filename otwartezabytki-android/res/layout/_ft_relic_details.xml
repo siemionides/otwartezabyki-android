@@ -131,15 +131,45 @@
                 style="@style/font_section_header"
 
                 />
-
-            <TextView
-                android:id="@+id/tv_date_content"
+            
+            
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/details_content_margin"
-                android:text="1818 - 1830"
+                android:layout_height="wrap_content">
+                
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/layout_photos_gallery"
+                    >
 
-                />
+
+                    <!--<ImageView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:id="@+id/main_photo"-->
+                        <!--/>-->
+
+                    <!--<ImageView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:id="@+id/main_photo2"-->
+                        <!--android:layout_marginLeft="300dp"-->
+                        <!--/>-->
+
+
+                 </LinearLayout>
+
+
+                
+                
+            </HorizontalScrollView>
+
+
+            
+
+
         </LinearLayout>
 
 
