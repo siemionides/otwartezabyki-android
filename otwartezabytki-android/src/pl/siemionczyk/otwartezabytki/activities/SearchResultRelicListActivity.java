@@ -23,6 +23,9 @@ public class SearchResultRelicListActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.navigation_drawer );
 
+        //set title
+        setTitle( R.string.main_menu_wyszukaj_wyniki );
+
 
         if ( !getIntent().getExtras().containsKey(BundleKeys.KEY_BUNDLE_RELICS_WRAPPER))
             throw new UnsupportedOperationException( "bundle should be provieded i");

@@ -6,6 +6,7 @@
 
     <string name="main_menu_w_okolicy">Zabytki w okolicy </string>
     <string name="main_menu_wyszukaj">Wyszukiwanie szczegółowe</string>
+    <string name="main_menu_wyszukaj_wyniki">Wyniki wyszukiwania</string>
     <string name="main_menu_dodaj">[ Dodaj zabytek ]</string>
     <string name="main_menu_favourites">Ulubione</string>
     <string name="main_menu_map">Mapa </string>

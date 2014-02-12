@@ -110,11 +110,11 @@ public class SearchRelicFragment extends Fragment {
 
     private void performRequestAndDisplayResults() {
         //get data from UI
-        String relicName = mEtRelicName.getText().toString();
-        String relicPlace = mEtPlaceName.getText().toString();
-        String dateFrom = mEtDateFrom.getText().toString();
-        String dateTo = mEtDateTo.getText().toString();
-        boolean onlyWithPhotos = mCheckBoxOnlyWithPhotos.isChecked();
+        final String relicName = mEtRelicName.getText().toString();
+        final String relicPlace = mEtPlaceName.getText().toString();
+        final String dateFrom = mEtDateFrom.getText().toString();
+        final String dateTo = mEtDateTo.getText().toString();
+        final boolean onlyWithPhotos = mCheckBoxOnlyWithPhotos.isChecked();
 
 
         Callback<RelicJsonWrapper> cb = new Callback<RelicJsonWrapper>(){
@@ -122,6 +122,15 @@ public class SearchRelicFragment extends Fragment {
             @Override
             public void success(RelicJsonWrapper relicJsonWrapper, Response response) {
                 MyLog.i( TAG, "success!");
+
+                //update by query details
+                relicJsonWrapper.searchQueryDetails = new RelicJsonWrapper.DetailsOfSearchQuery();
+                relicJsonWrapper.searchQueryDetails.relicName = relicName;
+                relicJsonWrapper.searchQueryDetails.relicPlace = relicPlace;
+                relicJsonWrapper.searchQueryDetails.dateFrom = dateFrom;
+                relicJsonWrapper.searchQueryDetails.dateTo = dateTo;
+                relicJsonWrapper.searchQueryDetails.onlyWithPhotos = onlyWithPhotos;
+
 
 
                 Intent i = new Intent( SearchRelicFragment.this.getActivity(), SearchResultRelicListActivity.class);
@@ -137,8 +146,7 @@ public class SearchRelicFragment extends Fragment {
         };
 
 
-        mClient.getSideEffects( relicPlace, relicName, dateFrom, dateTo, onlyWithPhotos, cb );
-
+        mClient.getRelics(relicPlace, relicName, dateFrom, dateTo, onlyWithPhotos, cb);
     }
 
 

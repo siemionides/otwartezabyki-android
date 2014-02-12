@@ -35,17 +35,22 @@ public class OtwarteZabytkiClient {
 
 
 
-    public void getSideEffects ( String place, String relicName, String from, String to, boolean hasPhotos,
-                                 Callback<RelicJsonWrapper> cb){
+    public void getRelics(String place, String relicName, String from, String to, boolean hasPhotos,
+                          Callback<RelicJsonWrapper> cb){
         api.getRelics(place, relicName, from, to, hasPhotos, cb);
+    }
+
+    public void getRelics(String place, String relicName, String from, String to, boolean hasPhotos,
+                          int page, Callback<RelicJsonWrapper> cb){
+        api.getRelics(place, relicName, from, to, hasPhotos, page, cb);
     }
 
 
     public void getRelicsAround(double latitude, double longitude, float radius,
-                                boolean hasPhotos,
+                                boolean hasPhotos, int page,
                                 Callback<RelicJsonWrapper> cb){
 
-        api.getRelics( latitude, longitude, radius,  hasPhotos, cb );
+        api.getRelics( latitude, longitude, radius,  hasPhotos, page, cb );
 
     }
 

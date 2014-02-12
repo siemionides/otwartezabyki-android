@@ -25,6 +25,7 @@ public class RelicsAroundAdapter extends ArrayAdapter<RelicJson> {
     private ArrayList<RelicJson> mValues, mFilterBaseData;
     private final int mResourceId;
     private Location mUserLocation;
+    private int nrPagesLoaded = 0;
 
     private Object mLock = new Object();
 
@@ -34,10 +35,30 @@ public class RelicsAroundAdapter extends ArrayAdapter<RelicJson> {
         super( context, resource, objects );
 
         this.mContext = context;
-        this.mValues = mFilterBaseData =objects;
+        this.mValues  = objects;
+
+        this.mFilterBaseData = new ArrayList<RelicJson>();
+        this.mFilterBaseData.addAll( mValues);
+
         this.mResourceId = resource;
         this.mUserLocation = userLocation;
     }
+
+
+    /** Updates both mFilterBase data and normal mValues*/
+    public void addSingleLastRelic( RelicJson relic ){
+        this.mValues.add( relic );
+        this.mFilterBaseData.add( relic );
+    }
+
+
+
+    public void addRelicsToTheEnd ( ArrayList<RelicJson> relics){
+        this.mValues.addAll( relics );
+        this.mFilterBaseData.addAll( relics );
+    }
+
+
 
     @Override
     public View getView ( int position, View convertView, ViewGroup parent ) {
@@ -104,5 +125,14 @@ public class RelicsAroundAdapter extends ArrayAdapter<RelicJson> {
                 }
             }
         };
+    }
+
+
+    public void setNrPagesLoaded( int nrPages ) {
+        this.nrPagesLoaded = nrPages;
+    }
+
+    public int getNrPagesLoaded(){
+        return this.nrPagesLoaded;
     }
 }

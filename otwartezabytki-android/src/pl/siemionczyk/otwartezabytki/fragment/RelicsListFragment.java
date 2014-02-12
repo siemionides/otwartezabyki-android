@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,10 +21,14 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+
 import pl.siemionczyk.otwartezabytki.BundleKeys;
 import pl.siemionczyk.otwartezabytki.OtwarteZabytkiApp;
 import pl.siemionczyk.otwartezabytki.R;
 import pl.siemionczyk.otwartezabytki.activities.MapActivity;
+import pl.siemionczyk.otwartezabytki.activities.SearchResultRelicListActivity;
 import pl.siemionczyk.otwartezabytki.adapters.RelicsAroundAdapter;
 import pl.siemionczyk.otwartezabytki.helper.HelperToolkit;
 import pl.siemionczyk.otwartezabytki.helper.MyLog;
@@ -47,17 +52,20 @@ public class RelicsListFragment extends Fragment implements SearchView.OnQueryTe
 
     public final static String TAG = "RelicsListFragment";
 
-    private final static float RADIUS_OF_SEARCH = 3f; //in kilometers
+    private final static float RADIUS_OF_SEARCH = 5f; //in kilometers
 
-    ListView mListViewRelics;
+    PullToRefreshListView mListViewRelics;
 
     LinearLayout mProgressBar;
 
     RelicsAroundAdapter mAdapter;
 
-    TextView mNrRelicsFound;
+    TextView mNrAllRelicsFound, mNrRelicsShownBelow, mNrAllPagesOfRelics;
 
     TextView mRadiusRelics;
+
+    TextView title;
+
 
     private Location mLastFoundLocation;
 
@@ -81,13 +89,20 @@ public class RelicsListFragment extends Fragment implements SearchView.OnQueryTe
         ((OtwarteZabytkiApp) getActivity().getApplication()).inject(this);
 
         //set title
-        getActivity().setTitle( R.string.main_menu_w_okolicy);
+//        getActivity().setTitle( R.string.main_menu_w_okolicy);
 
         //inject views
-        mListViewRelics = ( ListView ) view.findViewById( R.id.list_view_relics );
+        mListViewRelics = ( PullToRefreshListView ) view.findViewById( R.id.list_view_relics );
         mProgressBar = ( LinearLayout ) view.findViewById( R.id.progress_bar_relics );
-        mNrRelicsFound = ( TextView ) view.findViewById( R.id.tv_nr_relic_found );
+        mNrAllRelicsFound = ( TextView ) view.findViewById( R.id.tv_nr_relic_found );
         mRadiusRelics = ( TextView ) view.findViewById( R.id.tv_relic_found_radius );
+        mNrRelicsShownBelow = ( TextView) view.findViewById( R.id.tv_nr_relic_shown_below);
+        mNrAllPagesOfRelics = (TextView) view.findViewById( R.id.tv_nr_all_relic_pages);
+        title = ( TextView) view.findViewById( R.id.textView_title);
+
+
+
+
 
 
         //set list on click listener
@@ -95,8 +110,10 @@ public class RelicsListFragment extends Fragment implements SearchView.OnQueryTe
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //get relic
-                RelicsAroundAdapter adapt = ( RelicsAroundAdapter) parent.getAdapter();
-                RelicJson relic = adapt.getItem(position);
+
+//                mAdapter.getItem( position );
+//                RelicsAroundAdapter adapt = ( RelicsAroundAdapter) parent.getAdapter();
+                RelicJson relic = mAdapter.getItem(position);
                 HelperToolkit.makeToast( getActivity(), relic.identification);
 
                 replaceToRelicDetailsFragment(
@@ -106,32 +123,57 @@ public class RelicsListFragment extends Fragment implements SearchView.OnQueryTe
             }
         });
 
-        if ( getArguments() != null && getArguments().containsKey( BundleKeys.KEY_BUNDLE_RELICS_WRAPPER)){
-            //FROM DETAILED SEARCH
-
-            //set title
-//            getActivity().setTitle();
+        if ( getArguments() != null && getArguments().containsKey( BundleKeys.KEY_BUNDLE_RELICS_WRAPPER ) ){
+            //FROM DETAILED SEARCH - list of relics found
 
             mProgressBar.setVisibility( View.GONE);
 
             //add them to adapter
-            RelicJsonWrapper rWrapper = ( RelicJsonWrapper) getArguments().get( BundleKeys.KEY_BUNDLE_RELICS_WRAPPER);
+            final RelicJsonWrapper rWrapper = ( RelicJsonWrapper) getArguments().get( BundleKeys.KEY_BUNDLE_RELICS_WRAPPER);
 
-            Location lLoc = getLastKnownLocation();
-            mAdapter = new RelicsAroundAdapter( getActivity(), R.layout.list_item_relic_around, rWrapper.relics, lLoc
+            final Location userLocation = getLastKnownLocation();
+            mAdapter = new RelicsAroundAdapter( getActivity(), R.layout.list_item_relic_around, rWrapper.relics, userLocation
                      );
-
+            mAdapter.setNrPagesLoaded( 1 );
 
             mAdapter.notifyDataSetChanged();
             mListViewRelics.setAdapter( mAdapter);
 
+            //configure pullable list
+            // The same serach as for detiled search should be performed
+            mListViewRelics.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                @Override
+                public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                    // Do work to refresh the list here.
+                    int currentPage = mAdapter.getNrPagesLoaded();
+
+                    performRequestForSearchQueryAndDisplay( rWrapper.searchQueryDetails, currentPage+1, userLocation);
+                }
+            });
+
         } else {
+            //FROM relics around
             //get positionInfo
-            getLocationInfoAndUpdateRelics(view, RADIUS_OF_SEARCH);
+            getLocationInfoAndUpdateRelicsAround(RADIUS_OF_SEARCH, 1, false);  //for the very first page of results
+
+            //configure pullable list
+            // Set a listener to be invoked when the list should be refreshed - the relics around are to be found
+            mListViewRelics.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                @Override
+                public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                    // Do work to refresh the list here.
+                    int currentPage = mAdapter.getNrPagesLoaded();
+
+                    getLocationInfoAndUpdateRelicsAround( RADIUS_OF_SEARCH, currentPage + 1, true );
+
+                }
+            });
+
         }
 
         return view;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -218,12 +260,11 @@ public class RelicsListFragment extends Fragment implements SearchView.OnQueryTe
     }
 
 
-    private void getLocationInfoAndUpdateRelics ( View rootView, final float radius) {
+    private void getLocationInfoAndUpdateRelicsAround(final float radius, final int page, final boolean fromPullRefresh) {
         LocationManager locationManager;
         String svcName = Context.LOCATION_SERVICE;
         locationManager = ( LocationManager) getActivity().getSystemService(svcName);
 
-        final TextView title = ( TextView) rootView.findViewById( R.id.textView_title);
 
 
         LocationListener ll = new LocationListener() {
@@ -239,7 +280,7 @@ public class RelicsListFragment extends Fragment implements SearchView.OnQueryTe
 
 
                 //donwload the relics
-                downloadListRelics( location, radius);
+                performReqForRelicsAroundAndDisplay(location, radius, page, fromPullRefresh);
             }
 
             @Override
@@ -265,39 +306,102 @@ public class RelicsListFragment extends Fragment implements SearchView.OnQueryTe
 
     }
 
-    private void fillListView( ArrayList<RelicJson> relics, Location userLocation){
-        mAdapter = new RelicsAroundAdapter( getActivity(), R.layout.list_item_relic_around, relics, userLocation );
-        mListViewRelics.setAdapter( mAdapter );
+    /** */
+    private void fillListView( ArrayList<RelicJson> relics, Location userLocation, int currentResultPage, boolean fromPullRefresh){
+
+        if ( fromPullRefresh ){
+            mAdapter.addRelicsToTheEnd(relics);
+            HelperToolkit.makeToast( getActivity().getApplicationContext(),
+                    "new relics added\nnr new: " + relics.size() +"\nnr all: " + mAdapter.getCount() +  "\npages loaded: " + currentResultPage  );
+            mAdapter.notifyDataSetChanged();
+            mListViewRelics.onRefreshComplete();
+
+        } else {
+            mAdapter = new RelicsAroundAdapter( getActivity(), R.layout.list_item_relic_around, relics, userLocation );
+            mListViewRelics.setAdapter( mAdapter );
+        }
+
+        mAdapter.setNrPagesLoaded( currentResultPage );
     }
 
 
+    private void performRequestForSearchQueryAndDisplay( final RelicJsonWrapper.DetailsOfSearchQuery qD,
+                                                         int nrPage, final Location userLocation ) {
+        //get data from UI
+        Callback<RelicJsonWrapper> cb = new Callback<RelicJsonWrapper>(){
+
+            @Override
+            public void success(RelicJsonWrapper relicJsonWrapper, Response response) {
+                MyLog.i( TAG, "success!");
+                //update by query details
+
+                fillListView( relicJsonWrapper.relics, userLocation, relicJsonWrapper.meta.current_page, true );
+
+                //update nr_relics field
+                mNrAllRelicsFound.setText(Integer.toString( relicJsonWrapper.meta.total_count  ));
+
+                //update nr relics shown below
+                int nrRelics = mAdapter == null ? relicJsonWrapper.relics.size() : mAdapter.getCount();
+
+                mNrRelicsShownBelow.setText( Integer.toString( nrRelics  ));
+
+                //update nr Pages
+                mNrAllPagesOfRelics.setText( Integer.toString( relicJsonWrapper.meta.total_pages ));
+
+
+                //update radius
+                mRadiusRelics.setText( Float.toString( RADIUS_OF_SEARCH) );
+
+
+            }
+
+            @Override
+            public void failure(RetrofitError retrofitError) {
+                MyLog.i( TAG, "failure!");
+
+            }
+        };
+
+        mClient.getRelics(qD.relicPlace, qD.relicName, qD.dateFrom, qD.dateTo, qD.onlyWithPhotos, nrPage, cb);
+    }
 
     /**
      * @param location location
      *
      * @param radius in kilometers*/
-    private void downloadListRelics( final Location location, final float radius){
+    private void performReqForRelicsAroundAndDisplay(final Location location, final float radius, final int page, final boolean fromPullRefresh){
 
         Callback<RelicJsonWrapper> cb = new Callback<RelicJsonWrapper>() {
             @Override
             public void success ( RelicJsonWrapper relicJsonWrapper, Response response ) {
-                MyLog.i( TAG, "success on downloading relics:" + relicJsonWrapper.relics.size() );
+                MyLog.i( TAG, "success on downloading relics: " + relicJsonWrapper.relics.size() );
+                MyLog.i( TAG, "current Page: " + relicJsonWrapper.meta.current_page );
+                MyLog.i( TAG, "all pages: " + relicJsonWrapper.meta.total_pages );
 
-                for (RelicJson r: relicJsonWrapper.relics){
+                for ( RelicJson r: relicJsonWrapper.relics ) {
                     MyLog.i(TAG, "name: " + r.identification +" long:" + r.longitude + ", lat:" + r.latitude + " nrPhotos: " + r.photos.size() );
                 }
+
+                //fill listview
+                fillListView( relicJsonWrapper.relics , location, relicJsonWrapper.meta.current_page, fromPullRefresh );
 
                 //hide progressBar
                 mProgressBar.setVisibility( View.GONE );
 
                 //update nr_relics field
-                mNrRelicsFound.setText( Integer.toString( relicJsonWrapper.relics.size() ) );
+                mNrAllRelicsFound.setText(Integer.toString( relicJsonWrapper.meta.total_count  ));
+
+                //update nr relics shown below
+                int nrRelics = mAdapter == null ? relicJsonWrapper.relics.size() : mAdapter.getCount();
+
+                mNrRelicsShownBelow.setText( Integer.toString( nrRelics  ));
+
+                //update nr Pages
+                mNrAllPagesOfRelics.setText( Integer.toString( relicJsonWrapper.meta.total_pages ));
+
 
                 //update radius
                 mRadiusRelics.setText( Float.toString( radius) );
-
-                //fill listview
-                fillListView( relicJsonWrapper.relics , location);
 
 
             }
@@ -307,7 +411,7 @@ public class RelicsListFragment extends Fragment implements SearchView.OnQueryTe
                 MyLog.i( TAG, "failture on connection:" + retrofitError );
             }
         };
-        mClient.getRelicsAround((float) location.getLatitude(), (float) location.getLongitude(), radius, true, cb);
+        mClient.getRelicsAround((float) location.getLatitude(), (float) location.getLongitude(), radius, false, page, cb);
     }
 
     public void replaceToRelicDetailsFragment( RelicJsonWrapper relicWrapper, int currentItem){

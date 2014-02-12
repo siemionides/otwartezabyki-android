@@ -39,6 +39,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="android-query-full.0.26.7" level="project" />
+    <orderEntry type="module" module-name="android-pulltorefresh" />
   </component>
 </module>
 

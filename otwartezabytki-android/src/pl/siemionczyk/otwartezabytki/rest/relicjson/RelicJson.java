@@ -34,6 +34,11 @@ public class RelicJson implements Serializable {
     /** Keeps main photo in there! */
     public PhotoJson main_photo;
 
+
+    public RelicJson ( String identification ){
+        this.identification = identification;
+    }
+
 	@Override
 	public String toString() {
 		return "dating: " + dating_of_obj + ", name: " + identification + " place:" + place_name + " description:" + description;
@@ -43,6 +48,8 @@ public class RelicJson implements Serializable {
 
 //        return returnStr;
 	}
+
+
 
 
     public String[] getUrlsToMaxiPhotos(){

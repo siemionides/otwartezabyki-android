@@ -26,7 +26,7 @@
 
 
             <TextView   android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Znaleziono zabytków: "
+                        android:text="Ilość wszys. zabytków:"
                     />
 
             <TextView android:layout_width="wrap_content"
@@ -54,6 +54,59 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ilość wyświetlanych\n poniżej zabytków:" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_nr_relic_shown_below"
+                android:text=" ... " />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ilość 'stron' zabytków:" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_nr_all_relic_pages"
+                android:text=" ... " />
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
 
 
 
@@ -62,10 +115,18 @@
                     android:layout_marginTop="@dimen/activity_vertical_margin"
             >
 
-        <ListView android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:id="@+id/list_view_relics"
-                />
+        <!--<ListView android:layout_width="match_parent"-->
+                  <!--android:layout_height="wrap_content"-->
+                  <!--android:id="@+id/list_view_relics"-->
+                <!--/>-->
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            xmlns:ptr="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/list_view_relics"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            ptr:ptrMode="pullFromEnd"
+            />
 
         <include
                 layout="@layout/progress_bar_relics_loading"
