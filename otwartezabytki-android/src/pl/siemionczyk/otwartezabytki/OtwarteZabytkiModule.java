@@ -27,12 +27,7 @@ import javax.inject.Singleton;
 
 
 @Module(injects = {
-           // LauncherActivity.class,
-            //LoginActivity.class,
             MainActivity.class,
-//             TestService.class,
-            //MeetupsMapFragment.class,
-            //MeetupListFragment.class
             //Fragments
             RelicsListFragment.class,
             SearchRelicFragment.class
@@ -46,12 +41,6 @@ public class OtwarteZabytkiModule {
     public OtwarteZabytkiModule ( Context context ) {
         this.context = context;
     }
-
-//    @Provides
-//    @Singleton
-//    Context providesContext() {
-//        return context;
-//    }
 
     @Provides
     @Singleton

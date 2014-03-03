@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.widget.Toast;
 
+import pl.siemionczyk.otwartezabytki.BuildConfig;
+
 /**
  * Created by majkeliusz on 7/7/13.
  */
@@ -27,10 +29,14 @@ public class HelperToolkit {
                 });
     }
 
-    public static void makeToast(Context appContext, String valueToShow){
-        Toast.makeText(appContext,
-                valueToShow,
-                Toast.LENGTH_LONG).show();
+    public static void makeToast(Context appContext, String valueToShow, boolean isProductionToast){
+        if ( BuildConfig.DEBUG || isProductionToast ){
+            Toast.makeText(appContext,
+                    valueToShow,
+                    Toast.LENGTH_LONG).show();
+        }
+
+
     }
 
     public static int returnFive (){

@@ -1,8 +1,11 @@
 package pl.siemionczyk.otwartezabytki.activities;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -17,22 +20,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.squareup.otto.Subscribe;
 
-import pl.siemionczyk.otwartezabytki.BundleKeys;
 import pl.siemionczyk.otwartezabytki.OtwarteZabytkiApp;
 import pl.siemionczyk.otwartezabytki.R;
 import pl.siemionczyk.otwartezabytki.event.EventBus;
 import pl.siemionczyk.otwartezabytki.event.events.FromServiceEvent;
 import pl.siemionczyk.otwartezabytki.event.events.TestEvent;
-import pl.siemionczyk.otwartezabytki.event.events.ToServiceEvent;
 import pl.siemionczyk.otwartezabytki.fragment.*;
 import pl.siemionczyk.otwartezabytki.helper.HelperToolkit;
 import pl.siemionczyk.otwartezabytki.helper.MyLog;
 import pl.siemionczyk.otwartezabytki.rest.OtwarteZabytkiClient;
-import pl.siemionczyk.otwartezabytki.rest.RelicJsonWrapper;
-import pl.siemionczyk.otwartezabytki.rest.relicjson.RelicJson;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+
 
 import javax.inject.Inject;
 
@@ -79,7 +76,6 @@ public class MainActivity extends FragmentActivity {
 
         //by deafult open 0
         selectItem( 0, getResources().getString( R.string.main_menu_w_okolicy ));
-//        selectItem( 2, getResources().getString( R.string.main_menu_wyszukaj ));
 
 	}
 
@@ -228,12 +224,12 @@ public class MainActivity extends FragmentActivity {
         }
 
         //2 - 
-       else if (textButton.equals( getString( R.string.main_menu_dodaj ) )) HelperToolkit.makeToast( this, "Adding relics not implemented yet");
+       else if (textButton.equals( getString( R.string.main_menu_dodaj ) )) HelperToolkit.makeToast( this, "Adding relics not implemented yet", false);
 
 
         else if (textButton.equals( getString( R.string.main_menu_favourites ) )){
             //FAVOURITES
-            HelperToolkit.makeToast(this, "Favourites are not implemented yet");
+            HelperToolkit.makeToast(this, "Favourites are not implemented yet", false);
         }
 
         else if (textButton.equals( getString( R.string.main_menu_map ) )){
@@ -244,12 +240,9 @@ public class MainActivity extends FragmentActivity {
         }
 
         else if (textButton.equals( getString( R.string.main_menu_settings ) )){
-            HelperToolkit.makeToast( this, " Settings not implemented yet");
 
-            ToServiceEvent event = new ToServiceEvent();
-            event.value = 3;
-
-            bus.post(event);
+            Intent i = new Intent( this, SettingsActivity.class);
+            startActivity( i );
         }
 
         else if (textButton.equals( getString( R.string.main_menu_about ) )) f = new AboutFragment();

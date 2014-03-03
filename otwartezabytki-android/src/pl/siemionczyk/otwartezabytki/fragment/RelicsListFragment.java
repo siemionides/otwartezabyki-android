@@ -101,10 +101,6 @@ public class RelicsListFragment extends Fragment implements SearchView.OnQueryTe
         title = ( TextView) view.findViewById( R.id.textView_title);
 
 
-
-
-
-
         //set list on click listener
         mListViewRelics.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -402,8 +398,6 @@ public class RelicsListFragment extends Fragment implements SearchView.OnQueryTe
 
                 //update radius
                 mRadiusRelics.setText( Float.toString( radius) );
-
-
             }
 
             @Override
@@ -411,7 +405,7 @@ public class RelicsListFragment extends Fragment implements SearchView.OnQueryTe
                 MyLog.i( TAG, "failture on connection:" + retrofitError );
             }
         };
-        mClient.getRelicsAround((float) location.getLatitude(), (float) location.getLongitude(), radius, false, page, cb);
+        mClient.getRelicsAround((float) location.getLatitude(), (float) location.getLongitude(), radius, true, page, cb);
     }
 
     public void replaceToRelicDetailsFragment( RelicJsonWrapper relicWrapper, int currentItem){
